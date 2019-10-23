@@ -62,8 +62,7 @@ print(sample_object_hash)
 #
 rule all:
     input:
-         expand(directory(experiment_dict["output_dir"]+"/{sample}.trimmed_salmon"), sample=samples)
-
+         experiment_dict["output_dir"]+"/txi.RData"
 rule trimmomatic:
     input:
          expand("{directory}/{sample}", directory=output_directory, sample=samples)
@@ -93,3 +92,18 @@ rule salmon_quant:
     run:
         print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
         object_dict[sample_object_hash[wildcards.sample]].run_salmon()
+rule tx2gene:
+    input:
+         experiment_dict["gff"]
+    output:
+          experiment_dict["output_dir"]+"/tx2gene.txt"
+    run:
+        my_experiment.get_tx2gene()
+rule tximport:
+    input:
+         tx2gene = experiment_dict["output_dir"]+"/tx2gene.txt",
+         samples = expand(directory(experiment_dict["output_dir"]+"/{sample}.trimmed_salmon"), sample=samples)
+    output:
+          experiment_dict["output_dir"]+"/txi.RData"
+    run:
+        my_experiment.run_tximport()

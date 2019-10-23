@@ -3,9 +3,6 @@
 # Created by: Jeremy
 # Created on: 2019-09-19
 
-args = commandArgs(TRUE)
-outputDir = args[1]
-setwd(outputDir)
 # load required packages
 library(readr)
 library(dplyr)
