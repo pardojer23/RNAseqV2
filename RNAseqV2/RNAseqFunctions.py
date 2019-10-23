@@ -2,13 +2,14 @@ import subprocess
 import os
 class RNAseq_exp:
 
-    def __init__(self, ind, fasta, threads, script_dir, output_dir):
-
+    def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, key):
         self.exp_parmas = {"Index": ind,
                        "Threads": threads,
                        "Fasta": fasta,
+                       "GFF": gff,
                        "Script_dir": script_dir,
-                       "Output_dir": output_dir}
+                       "Output_dir": output_dir,
+                        "Key":key}
 
     def salmon_index(self):
         if os.path.exists(self.exp_parmas["Output_dir"]+"/"+self.exp_parmas["Index"]):
@@ -18,6 +19,24 @@ class RNAseq_exp:
             subprocess.run(["bash", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_index.sh",
                             self.exp_parmas["Fasta"],
                             self.exp_parmas["Index"]],)
+    def get_tx2gene(self):
+        output_dir = self.exp_params["Output_dir"]
+        with open(self.exp_parmas["gff"],"r") as gff:
+            with open(output_dir+"/tx2gene.txt", "w+" ) as tx2gene:
+                for line in gff:
+                    if not line.startswith("#"):
+                        my_line = line.strip().split("\t")
+                        if my_line[2] == "mRNA":
+                            id_line = my_line[8].split(";")
+                            for i in range(len(id_line)):
+                                if id_line[i].startswith("ID="):
+                                    transcript_id = id_line[i].replace("ID=", "")
+                                elif id_line[i].startswith("Parent="):
+                                    gene_id = id_line[i].replace("Parent=", "")
+                        tx2gene.write(transcript_id + "\t"+gene_id)
+
+
+
 class RNAseq:
     def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, condition, paired,
                  ind, fasta, threads, script_dir, output_dir):

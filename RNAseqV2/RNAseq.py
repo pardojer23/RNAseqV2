@@ -28,7 +28,19 @@ class Experiment:
         self.output_dir = output_dir
 
     def generate_sample_table(self):
-        pass
+        if not os.path.exists(self.sample_table):
+            with open(self.sample_table, "w+") as sampleTable:
+                sampleTable.write("SampleID,"
+                                  "Read1,"
+                                  "Read2,"
+                                  "Replicate,"
+                                  "Tissue,"
+                                  "Time,"
+                                  "Date,"
+                                  "Condition,"
+                                  "Collector,"
+                                  "Location,"
+                                  "Platform\n")
 
     def read_sample_table(self):
         sample_dict = {}
