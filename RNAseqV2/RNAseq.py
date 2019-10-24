@@ -94,11 +94,11 @@ def main():
         print("Started at {0}".format(datetime.now()))
         parser = argparse.ArgumentParser()
         parser.add_argument("-s", "--sample_table", help="Path to sample table")
-        parser.add_argument("-g", "--gff", help="Path to reference annotation")
-        parser.add_argument("-f", "--fasta", help="Path to reference transcriptome")
-        parser.add_argument("-i", "--index", help="Basename for transcriptome index")
-        parser.add_argument("-t", "--threads", help = "number of multiprocessing threads")
-        parser.add_argument("-sd", "--script_dir", help="path to the directory where the package is installed")
+        parser.add_argument("-g", "--gff", help="Path to reference annotation", default=None)
+        parser.add_argument("-f", "--fasta", help="Path to reference transcriptome", default=None)
+        parser.add_argument("-i", "--index", help="Basename for transcriptome index", default="myTranscriptIndex")
+        parser.add_argument("-t", "--threads", help="number of multiprocessing threads", default="1")
+        parser.add_argument("-sd", "--script_dir", help="path to the directory where the package is installed", default="./")
         parser.add_argument("-o", "--output", help="Path to output directory")
         args = parser.parse_args()
         sample_table = args.sample_table
@@ -109,6 +109,11 @@ def main():
         script_dir = args.script_dir
         output_dir = args.output
         my_experiment = Experiment(sample_table, gff, fasta, index, threads, script_dir, output_dir)
+        if not os.path.exists(sample_table):
+            print("{0}: Generating empty sample table...\n"
+                  "Please fill in sample information before continuing".format(datetime.now()))
+            my_experiment.generate_sample_table()
+            exit()
         my_experiment.write_json_experiment()
         subprocess.run(["bash", script_dir+"/Bash_Scripts/run_snakemake.sh"])
 
