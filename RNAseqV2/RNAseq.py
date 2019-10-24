@@ -30,8 +30,7 @@ class Experiment:
     def generate_sample_table(self):
         if not os.path.exists(self.sample_table):
             with open(self.sample_table, "w+") as sampleTable:
-                sampleTable.write("SampleID,"
-                                  "Read1,"
+                sampleTable.write("Read1,"
                                   "Read2,"
                                   "Replicate,"
                                   "Tissue,"
