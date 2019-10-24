@@ -68,6 +68,8 @@ rule trimmomatic:
          expand("{directory}/{sample}", directory=output_directory, sample=samples)
     output:
           experiment_dict["output_dir"]+"/{sample}.trimmed"
+    conda:
+        "envs/trimmomatic.yml"
     run:
        # print(sample_object_hash.keys())
         print("--INFO-- {0}: Running trimmomatic for sample {1}".format(datetime.now(), wildcards.sample))
@@ -78,6 +80,8 @@ rule salmon_index:
          experiment_dict["fasta"]
     output:
           experiment_dict["output_dir"]+"/"+experiment_dict["index"]
+    conda:
+        "envs/salmon.yml"
     run:
         print("--INFO-- {0}: Running Salmon index on transcriptome file {1}".format(
             datetime.now(), experiment_dict["fasta"]))
@@ -89,6 +93,8 @@ rule salmon_quant:
          index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
     output:
           directory(experiment_dict["output_dir"]+"/{sample}.trimmed_salmon")
+    conda:
+         "envs/salmon.yml"
     run:
         print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
         object_dict[sample_object_hash[wildcards.sample]].run_salmon()
