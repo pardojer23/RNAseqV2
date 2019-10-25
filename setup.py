@@ -17,4 +17,4 @@ setup(name='RNAseqV2',
                 'json',
                 'subprocess',
                 'os'],)
-subprocess.run(["Bash", "./INSTALL.sh"])
+subprocess.run(["bash", "./INSTALL.sh"])
