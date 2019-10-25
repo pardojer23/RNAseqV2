@@ -52,7 +52,8 @@ my_experiment = RNAseqFunctions.RNAseq_exp(experiment_dict["index"],
                                            experiment_dict["gff"],
                                            experiment_dict["threads"],
                                            experiment_dict["script_dir"],
-                                           experiment_dict["output_dir"])
+                                           experiment_dict["output_dir"],
+                                           experiment_dict["key"])
 object_dict = get_input_objects(experiment_dict)
 samples = [os.path.basename(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
 output_directory=[os.path.dirname(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
