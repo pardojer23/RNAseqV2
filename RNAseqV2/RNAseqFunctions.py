@@ -1,6 +1,6 @@
 import subprocess
 import os
-class RNAseq_exp:
+class RNAseq_exp():
 
     def __init__(self, ind, fasta, gff, threads, script_dir, output_dir):
         self.exp_parmas = {"Index": ind,
@@ -39,7 +39,7 @@ class RNAseq_exp:
 
 
 
-class RNAseq:
+class RNAseq():
     def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, condition, paired,
                  ind, fasta, threads, script_dir, output_dir):
         self.sample_dict = {"SampleID": sample_id,
