@@ -48,9 +48,9 @@ def get_input_objects(experiment_dict):
 
 experiment_dict = read_config("experiment_config.txt")
 my_experiment = RNAseqFunctions.RNAseq_exp(experiment_dict["index"],
+                                           experiment_dict["threads"],
                                            experiment_dict["fasta"],
                                            experiment_dict["gff"],
-                                           experiment_dict["threads"],
                                            experiment_dict["script_dir"],
                                            experiment_dict["output_dir"])
 object_dict = get_input_objects(experiment_dict)
