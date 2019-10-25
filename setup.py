@@ -1,4 +1,5 @@
 from distutils.core import setup
+import subprocess
 
 setup(name='RNAseqV2',
       version='2.0',
@@ -16,3 +17,4 @@ setup(name='RNAseqV2',
                 'json',
                 'subprocess',
                 'os'],)
+subprocess.run(["Bash", "./INSTALL.sh"])

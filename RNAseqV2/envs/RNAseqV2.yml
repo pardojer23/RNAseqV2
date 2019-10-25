@@ -1,4 +1,4 @@
-name: tximport
+name: RNAseqV2
 channels:
 - conda-forge
 - bioconda
