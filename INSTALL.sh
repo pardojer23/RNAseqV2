@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+conda update -y conda
 conda env create --file ./RNAseqV2/envs/salmon.yml
 conda env create --file ./RNAseqV2/envs/trimmomatic.yml
 conda env create --file ./RNAseqV2/envs/tximport.yml
