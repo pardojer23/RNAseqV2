@@ -8,7 +8,7 @@ class RNAseq_exp:
                        "Fasta": fasta,
                        "GFF": gff,
                        "Script_dir": script_dir,
-                       "Output_dir": output_dir,}
+                       "Output_dir": output_dir}
 
     def salmon_index(self):
         if os.path.exists(self.exp_parmas["Output_dir"]+"/"+self.exp_parmas["Index"]):
