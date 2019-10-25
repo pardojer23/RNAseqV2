@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-snakemake -s ./RNAseq.smk --use-conda
+SCRIPT_DIR=$1
+snakemake -s ${SCRIPT_DIR}/RNAseq.smk --use-conda
