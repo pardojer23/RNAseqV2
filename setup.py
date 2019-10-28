@@ -7,13 +7,9 @@ setup(name='RNAseqV2',
       author='Jeremy Pardo',
       author_email='mezeg39@gmail.com',
       packages=['RNAseqV2'],
-      install_requires=['distutils',
-                'distutils.command',
-                'datetime',
+      install_requires=[
                 'argparse',
                 'pandas',
                 'numpy',
-                'dateparser',
-                'json',
-                'subprocess'])
+                'dateparser'])
 subprocess.run(["bash", "./INSTALL.sh"])
