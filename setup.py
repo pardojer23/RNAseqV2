@@ -15,6 +15,5 @@ setup(name='RNAseqV2',
                 'numpy',
                 'dateparser',
                 'json',
-                'subprocess',
-                'os'],)
+                'subprocess'])
 subprocess.run(["bash", "./INSTALL.sh"])
