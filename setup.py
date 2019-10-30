@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import subprocess
 
 setup(name='RNAseqV2',
@@ -6,7 +6,7 @@ setup(name='RNAseqV2',
       description='RNAseq Processing',
       author='Jeremy Pardo',
       author_email='mezeg39@gmail.com',
-      packages=['RNAseqV2'],
+      packages=find_packages(),
       install_requires=[
                 'argparse',
                 'pandas',
