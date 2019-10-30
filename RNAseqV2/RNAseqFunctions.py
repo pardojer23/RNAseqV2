@@ -16,7 +16,7 @@ class RNAseq_exp():
             print("Index {0} already exists!".format(
                 self.exp_parmas["Output_dir"]+"/"+self.exp_parmas["Index"]))
         else:
-            subprocess.run(["bash", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_index.sh",
+            subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_index.sh",
                             self.exp_parmas["Fasta"],
                             self.exp_parmas["Index"]],)
     def get_tx2gene(self):
