@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#!/usr/bin/env bash
 READ1=$1
 READ1N=$(basename ${READ1})
 THREADS=$2
