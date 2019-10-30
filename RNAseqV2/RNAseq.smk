@@ -1,3 +1,6 @@
+# debugging
+import sys
+print(sys.path)
 from RNAseqV2 import RNAseqFunctions
 import json
 import os
