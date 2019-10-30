@@ -9,3 +9,4 @@ conda env create --file ./RNAseqV2/envs/RNAseqV2.yml
 source activate tximport
 Rscript ./RNAseqV2/R_Scripts/Install.r
 conda deactivate
+conda init bash
