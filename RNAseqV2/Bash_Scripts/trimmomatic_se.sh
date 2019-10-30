@@ -4,6 +4,7 @@ READ1N=$(basename ${READ1})
 THREADS=$2
 ADAPTERS=$3
 OUTPUT=$4
+source activate trimmomatic
 mkdir -p ${OUTPUT}
 trimmomatic SE -threads ${THREADS} -phred33 -trimlog ${OUTPUT}/${READ1N}.trimlog \
 ${READ1} \
