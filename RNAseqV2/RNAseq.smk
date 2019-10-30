@@ -1,7 +1,7 @@
 # debugging
 import sys
 print(sys.path)
-from RNAseqV2 import RNAseqFunctions
+import RNAseqFunctions
 import json
 import os
 from datetime import datetime
@@ -92,7 +92,7 @@ rule salmon_quant:
          fastq = expand(experiment_dict["output_dir"]+"/{sample}.trimmed", sample=samples),
          index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
     output:
-          directory(experiment_dict["output_dir"]+"/{sample}.trimmed_salmon")
+          experiment_dict["output_dir"]+"/{sample}.trimmed_salmon"
 
     run:
         print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
@@ -107,7 +107,7 @@ rule tx2gene:
 rule tximport:
     input:
          tx2gene = experiment_dict["output_dir"]+"/tx2gene.txt",
-         samples = expand(directory(experiment_dict["output_dir"]+"/{sample}.trimmed_salmon"), sample=samples)
+         samples = expand((experiment_dict["output_dir"]+"/{sample}.trimmed_salmon"), sample=samples)
     output:
           experiment_dict["output_dir"]+"/txi.RData"
     run:
