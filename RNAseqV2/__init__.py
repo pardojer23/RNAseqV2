@@ -1,1 +1,1 @@
-import RNAseqV2.RNAseqFunctions
+from . import RNAseqFunctions
