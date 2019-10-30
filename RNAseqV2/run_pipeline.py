@@ -69,6 +69,7 @@ class Experiment:
                             "threads": self.threads,
                             "script_dir": self.script_dir,
                             "output_dir": self.output_dir,
+                            "trimmomatic": self.trimmomatic,
                             "samples": self.read_sample_table()}
         for key in experiment_dict["samples"]:
             if experiment_dict["samples"][key]["Read2"] == "":
