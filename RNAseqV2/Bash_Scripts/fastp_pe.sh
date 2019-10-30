@@ -14,7 +14,7 @@ fastp --detect_adapter_for_pe \
 -I ${READ2} \
 -o ${OUTPUT}/${READ1N}.trimmed \
 -O ${OUTPUT}/${READ2N}.trimmed \
---json ${OUTPUT}/${READ1N}_fastp.json \
+--json ${OUTPUT}/fastp_reports/${READ1N}_fastp.json \
 --html ${OUTPUT}/fastp_reports/${READ1N}_fastp.html \
 --thread ${THREADS}
 

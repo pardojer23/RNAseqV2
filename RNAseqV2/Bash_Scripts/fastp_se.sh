@@ -9,6 +9,6 @@ mkdir -p ${OUTPUT}/fastp_reports
 
 fastp -i ${READ1} \
 -o ${OUTPUT}/${READ1N}.trimmed \
---json ${OUTPUT}/${READ1N}_fastp.json \
+--json ${OUTPUT}/fastp_reports/${READ1N}_fastp.json \
 --html ${OUTPUT}/fastp_reports/${READ1N}_fastp.html \
 --thread ${THREADS}
