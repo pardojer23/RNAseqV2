@@ -90,7 +90,7 @@ rule salmon_index:
     input:
          experiment_dict["fasta"]
     output:
-          experiment_dict["output_dir"]+"/"+experiment_dict["index"]
+          directory(experiment_dict["output_dir"]+"/"+experiment_dict["index"])
 
     run:
         print("--INFO-- {0}: Running Salmon index on transcriptome file {1}".format(
