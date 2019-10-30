@@ -6,7 +6,7 @@ READ2N=$(basename ${READ2})
 THREADS=$3
 ADAPTERS=$4
 OUTPUT=$5
-source activate trimmomatic
+conda activate trimmomatic
 mkdir -p ${OUTPUT}
 trimmomatic PE -threads ${THREADS} -phred33 -trimlog ${OUTPUT}/${READ1N}.trimlog \
 ${READ1} ${READ2} \

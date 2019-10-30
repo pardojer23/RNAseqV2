@@ -5,7 +5,7 @@ READ1N=$(basename ${READ1})
 INDEX=$3
 THREADS=$4
 OUTPUT=$5
-source activate salmon
+conda activate salmon
 salmon quant -i ${INDEX} -l A --threads ${THREADS} \
 -1 ${READ1} \
 -2 ${READ2} \
