@@ -108,7 +108,7 @@ class RNAseqPE(RNAseq):
                                        output_dir)
 
     def run_trimmomatic(self):
-        subprocess.run(["bash", self.exp_parmas["Script_dir"]+"/Bash_Scripts/trimmomatic_pe.sh",
+        subprocess.run(["bash -i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/trimmomatic_pe.sh",
                         self.sample_dict["Read1"],
                         self.sample_dict["Read2"],
                         self.exp_parmas["Threads"],
@@ -116,7 +116,7 @@ class RNAseqPE(RNAseq):
                         self.exp_parmas["Output_dir"]])
 
     def run_salmon(self):
-        subprocess.run(["bash", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_pe.sh",
+        subprocess.run(["bash -i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_pe.sh",
                         self.sample_dict["Read1"],
                         self.sample_dict["Read2"],
                         self.exp_parmas["Index"],
