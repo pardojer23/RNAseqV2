@@ -94,8 +94,8 @@ class RNAseqSE(RNAseq):
         subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_se.sh",
                         self.sample_dict["Read1"],
                         self.exp_parmas["Index"],
-                        self.exp_parmas["Threads"]],
-                        self.exp_parmas["Output_dir"])
+                        self.exp_parmas["Threads"],
+                        self.exp_parmas["Output_dir"]])
 
 
 class RNAseqPE(RNAseq):
@@ -135,6 +135,6 @@ class RNAseqPE(RNAseq):
                         self.sample_dict["Read1"],
                         self.sample_dict["Read2"],
                         self.exp_parmas["Index"],
-                        self.exp_parmas["Threads"]],
-                        self.exp_parmas["Output_dir"])
+                        self.exp_parmas["Threads"],
+                        self.exp_parmas["Output_dir"]])
 
