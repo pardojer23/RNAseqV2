@@ -5,4 +5,4 @@ OUTPUT=$3
 cd ${OUTPUT}
 conda activate salmon
 
-salmon index -t ${FASTA} -i ${INDEX}
+salmon index -t ${FASTA} -i ${OUTPUT}/${INDEX}
