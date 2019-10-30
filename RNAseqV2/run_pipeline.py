@@ -18,7 +18,7 @@ class MyEncoder(json.JSONEncoder):
 
 
 class Experiment:
-    def __init__(self, sample_table, gff, fasta, ind, threads, script_dir, output_dir):
+    def __init__(self, sample_table, gff, fasta, ind, threads, script_dir, output_dir, trimmomatic):
         self.sample_table = sample_table
         self.gff = gff
         self.fasta = fasta
@@ -26,6 +26,7 @@ class Experiment:
         self.threads=threads
         self.script_dir = script_dir
         self.output_dir = output_dir
+        self.trimmomatic= trimmomatic
 
     def generate_sample_table(self):
         if not os.path.exists(self.sample_table):
@@ -99,6 +100,7 @@ def main():
         parser.add_argument("-t", "--threads", help="number of multiprocessing threads", default="1")
         parser.add_argument("-sd", "--script_dir", help="path to the directory where the package is installed", default="./")
         parser.add_argument("-o", "--output", help="Path to output directory")
+        parser.add_argument("-T", "--trimmomatic", help="Set to True to use Trimmomatic instead of fastp", default= "false")
         args = parser.parse_args()
         sample_table = args.sample_table
         gff = args.gff
@@ -107,7 +109,12 @@ def main():
         threads = args.threads
         script_dir = args.script_dir
         output_dir = args.output
-        my_experiment = Experiment(sample_table, gff, fasta, index, threads, script_dir, output_dir)
+        trimmomatic = args.trimmomatic
+        if trimmomatic.lower() in ["t", "true", "y", "yes", "1", "on"]:
+            trim = True
+        else:
+            trim = False
+        my_experiment = Experiment(sample_table, gff, fasta, index, threads, script_dir, output_dir, trim)
         if not os.path.exists(sample_table):
             print("{0}: Generating empty sample table...\n"
                   "Please fill in sample information before continuing".format(datetime.now()))

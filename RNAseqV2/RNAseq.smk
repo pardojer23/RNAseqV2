@@ -52,7 +52,8 @@ my_experiment = RNAseqFunctions.RNAseq_exp(experiment_dict["index"],
                                            experiment_dict["fasta"],
                                            experiment_dict["gff"],
                                            experiment_dict["script_dir"],
-                                           experiment_dict["output_dir"])
+                                           experiment_dict["output_dir"],
+                                           experiment_dict["trimmomatic"])
 object_dict = get_input_objects(experiment_dict)
 samples = [os.path.basename(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
 output_directory=[os.path.dirname(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
@@ -63,15 +64,27 @@ print(sample_object_hash)
 rule all:
     input:
          experiment_dict["output_dir"]+"/txi.RData"
-rule trimmomatic:
-    input:
-         expand("{directory}/{sample}", directory=output_directory, sample=samples)
-    output:
-          experiment_dict["output_dir"]+"/{sample}.trimmed"
-    run:
-       # print(sample_object_hash.keys())
-        print("--INFO-- {0}: Running trimmomatic for sample {1}".format(datetime.now(), wildcards.sample))
-        object_dict[sample_object_hash[wildcards.sample]].run_trimmomatic()
+
+if experiment_dict["trimmomatic"].lower() == "true":
+    rule trimmomatic:
+        input:
+            expand("{directory}/{sample}", directory=output_directory, sample=samples)
+        output:
+            experiment_dict["output_dir"]+"/{sample}.trimmed"
+        run:
+            # print(sample_object_hash.keys())
+            print("--INFO-- {0}: Running trimmomatic for sample {1}".format(datetime.now(), wildcards.sample))
+            object_dict[sample_object_hash[wildcards.sample]].run_trimmomatic()
+else:
+    rule fastp:
+        input:
+             expand("{directory}/{sample}", directory=output_directory, sample=samples)
+        output:
+              experiment_dict["output_dir"]+"/{sample}.trimmed"
+        run:
+            # print(sample_object_hash.keys())
+            print("--INFO-- {0}: Running fastp for sample {1}".format(datetime.now(), wildcards.sample))
+            object_dict[sample_object_hash[wildcards.sample]].run_fastp()
 
 rule salmon_index:
     input:

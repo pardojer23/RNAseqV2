@@ -2,13 +2,14 @@ import subprocess
 import os
 class RNAseq_exp():
 
-    def __init__(self, ind, fasta, gff, threads, script_dir, output_dir):
+    def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, trim):
         self.exp_parmas = {"Index": ind,
                            "Threads": threads,
                            "Fasta": fasta,
                            "GFF": gff,
                            "Script_dir": script_dir,
-                           "Output_dir": output_dir}
+                           "Output_dir": output_dir,
+                           "Trimmomatic": trim}
 
     def salmon_index(self):
         if os.path.exists(self.exp_parmas["Output_dir"]+"/"+self.exp_parmas["Index"]):
@@ -75,6 +76,12 @@ class RNAseqSE(RNAseq):
                                        script_dir,
                                        output_dir)
 
+    def run_fastp(self):
+        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/fastp_se.sh",
+                        self.sample_dict["Read1"],
+                        self.exp_parmas["Threads"],
+                        self.exp_parmas["Output_dir"]])
+
     def run_trimmomatic(self):
         subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/trimmomatic_se.sh",
                         self.sample_dict["Read1"],
@@ -106,6 +113,13 @@ class RNAseqPE(RNAseq):
                                        threads,
                                        script_dir,
                                        output_dir)
+
+    def run_fastp(self):
+        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/fastp_pe.sh",
+                        self.sample_dict["Read1"],
+                        self.sample_dict["Read2"],
+                        self.exp_parmas["Threads"],
+                        self.exp_parmas["Output_dir"]])
 
     def run_trimmomatic(self):
         subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/trimmomatic_pe.sh",

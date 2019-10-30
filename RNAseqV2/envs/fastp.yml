@@ -1,0 +1,13 @@
+name: fastp
+channels:
+  - bioconda
+  - conda-forge
+  - https://repo.continuum.io/pkgs/free
+  - anaconda-fusion
+  - defaults
+dependencies:
+  - python=3.6.*
+  - pandas
+  - dateparser
+  - snakemake=3.13.3
+  - fastp
