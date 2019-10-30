@@ -65,7 +65,7 @@ rule all:
     input:
          experiment_dict["output_dir"]+"/txi.RData"
 
-if experiment_dict["trimmomatic"].lower() == "true":
+if experiment_dict["trimmomatic"] is True:
     rule trimmomatic:
         input:
             expand("{directory}/{sample}", directory=output_directory, sample=samples)
