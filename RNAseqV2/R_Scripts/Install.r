@@ -4,8 +4,9 @@
 # Created on: 2019-10-25
 if (!requireNamespace("BiocManager", quietly = TRUE))
 install.packages("BiocManager", repos='http://cran.us.r-project.org')
-
+if (!require("tximport", character.only=TRUE))
 BiocManager::install("tximport")
+if (!require("DESeq2", character.only=TRUE))
 BiocManager::install("DESeq2")
 # pkgTest function from Sacha Epskamp https://stackoverflow.com/users/567015/sacha-epskamp
 pkgTest <- function(x){
