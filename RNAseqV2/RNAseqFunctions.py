@@ -19,7 +19,7 @@ class RNAseq_exp():
             subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_index.sh",
                             self.exp_parmas["Fasta"],
                             self.exp_parmas["Index"],
-                            self.exp_parmas["Output"]])
+                            self.exp_parmas["Output_dir"]])
     def get_tx2gene(self):
         output_dir = self.exp_params["Output_dir"]
         with open(self.exp_parmas["gff"],"r") as gff:
