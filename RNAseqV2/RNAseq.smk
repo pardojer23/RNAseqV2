@@ -1,4 +1,4 @@
-from RNAseqV2 import RNAseqFunctions
+import RNAseqV2.RNAseqFunctions as RNAseqFunctions
 import json
 import os
 from datetime import datetime
