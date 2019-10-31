@@ -102,7 +102,7 @@ rule salmon_quant:
          fastq = expand(experiment_dict["output_dir"]+"/{sample}.trimmed", sample=samples),
          index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
     output:
-          experiment_dict["output_dir"]+"/{sample}_salmon"
+          directory(experiment_dict["output_dir"]+"/{sample}_salmon")
 
     run:
         print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
