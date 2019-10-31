@@ -5,6 +5,7 @@ INDEX=$2
 THREADS=$3
 OUTPUT=$4
 conda activate salmon
+cd ${OUTPUT}
 salmon quant -i ${INDEX} -l A --threads ${THREADS} \
 -r ${READ1} \
 --validateMappings --seqBias --gcBias \

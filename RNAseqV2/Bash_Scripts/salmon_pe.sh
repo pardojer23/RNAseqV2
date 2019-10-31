@@ -6,6 +6,7 @@ INDEX=$3
 THREADS=$4
 OUTPUT=$5
 conda activate salmon
+cd ${OUTPUT}
 salmon quant -i ${INDEX} -l A --threads ${THREADS} \
 -1 ${READ1} \
 -2 ${READ2} \
