@@ -22,7 +22,7 @@ class RNAseq_exp():
                             self.exp_params["Output_dir"]])
     def get_tx2gene(self):
         output_dir = self.exp_params["Output_dir"]
-        with open(self.exp_params["gff"],"r") as gff:
+        with open(self.exp_params["GFF"],"r") as gff:
             with open(output_dir+"/tx2gene.txt", "w+" ) as tx2gene:
                 for line in gff:
                     if not line.startswith("#"):
