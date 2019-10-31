@@ -7,7 +7,7 @@
 library(readr)
 library(dplyr)
 library(tximport)
-library stringr
+library (stringr)
 library(rjson)
 #read in json sample data
 jsonData = fromJSON(file="experiment_config.txt")
