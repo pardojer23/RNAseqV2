@@ -4,9 +4,9 @@ class RNAseq_exp():
 
     def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, trim):
         self.exp_parmas = {"Index": ind,
-                           "Threads": threads,
                            "Fasta": fasta,
                            "GFF": gff,
+                           "Threads": threads,
                            "Script_dir": script_dir,
                            "Output_dir": output_dir,
                            "Trimmomatic": trim}
@@ -131,6 +131,12 @@ class RNAseqPE(RNAseq):
                         self.exp_parmas["Output_dir"]])
 
     def run_salmon(self):
+        # debugging
+        print(self.sample_dict["Read1"],
+              self.sample_dict["Read2"],
+              self.exp_parmas["Index"],
+              self.exp_parmas["Threads"],
+              self.exp_parmas["Output_dir"])
         subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_pe.sh",
                         self.sample_dict["Read1"],
                         self.sample_dict["Read2"],
