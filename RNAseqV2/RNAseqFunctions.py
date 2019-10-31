@@ -34,7 +34,7 @@ class RNAseq_exp():
                                     transcript_id = id_line[i].replace("ID=", "")
                                 elif id_line[i].startswith("Parent="):
                                     gene_id = id_line[i].replace("Parent=", "")
-                        tx2gene.write(transcript_id + "\t"+gene_id)
+                            tx2gene.write(transcript_id + "\t"+gene_id)
 
     def run_tximport(self):
         subprocess.run("Bash", self.exp_params["Script_dir"]+"/Bash_Scripts/run_tximport.sh", self.exp_parmas["Script_dir"]+"/R_Scripts/Tximport.r")
