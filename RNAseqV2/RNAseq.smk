@@ -117,7 +117,7 @@ rule tx2gene:
 rule tximport:
     input:
          tx2gene = experiment_dict["output_dir"]+"/tx2gene.txt",
-         samples = expand((experiment_dict["output_dir"]+"/{sample}_salmon"), sample=samples)
+         samples = expand((experiment_dict["output_dir"]+"/{sample}_salmon/quant.sf"), sample=samples)
     output:
           experiment_dict["output_dir"]+"/txi.RData"
     run:
