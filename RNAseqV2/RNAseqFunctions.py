@@ -3,7 +3,7 @@ import os
 class RNAseq_exp():
 
     def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, trim):
-        self.exp_parmas = {"Index": ind,
+        self.exp_params = {"Index": ind,
                            "Fasta": fasta,
                            "GFF": gff,
                            "Threads": threads,
@@ -12,17 +12,17 @@ class RNAseq_exp():
                            "Trimmomatic": trim}
 
     def salmon_index(self):
-        if os.path.exists(self.exp_parmas["Output_dir"]+"/"+self.exp_parmas["Index"]):
+        if os.path.exists(self.exp_params["Output_dir"]+"/"+self.exp_params["Index"]):
             print("Index {0} already exists!".format(
-                self.exp_parmas["Output_dir"]+"/"+self.exp_parmas["Index"]))
+                self.exp_params["Output_dir"]+"/"+self.exp_params["Index"]))
         else:
-            subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_index.sh",
-                            self.exp_parmas["Fasta"],
-                            self.exp_parmas["Index"],
-                            self.exp_parmas["Output_dir"]])
+            subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/salmon_index.sh",
+                            self.exp_params["Fasta"],
+                            self.exp_params["Index"],
+                            self.exp_params["Output_dir"]])
     def get_tx2gene(self):
         output_dir = self.exp_params["Output_dir"]
-        with open(self.exp_parmas["gff"],"r") as gff:
+        with open(self.exp_params["gff"],"r") as gff:
             with open(output_dir+"/tx2gene.txt", "w+" ) as tx2gene:
                 for line in gff:
                     if not line.startswith("#"):
@@ -37,7 +37,7 @@ class RNAseq_exp():
                         tx2gene.write(transcript_id + "\t"+gene_id)
 
     def run_tximport(self):
-        subprocess.run("Bash", self.exp_parmas["Script_dir"]+"/Bash_Scripts/run_tximport.sh", self.exp_parmas["Script_dir"]+"/R_Scripts/Tximport.r")
+        subprocess.run("Bash", self.exp_params["Script_dir"]+"/Bash_Scripts/run_tximport.sh", self.exp_parmas["Script_dir"]+"/R_Scripts/Tximport.r")
 
 
 
@@ -52,7 +52,7 @@ class RNAseq():
                             "Tissue": tissue,
                             "Condition": condition,
                             "Paired": paired}
-        self.exp_parmas = {"Index": ind,
+        self.exp_params = {"Index": ind,
                            "Threads": threads,
                            "Fasta": fasta,
                            "Script_dir": script_dir,
@@ -78,24 +78,24 @@ class RNAseqSE(RNAseq):
                                        output_dir)
 
     def run_fastp(self):
-        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/fastp_se.sh",
+        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/fastp_se.sh",
                         self.sample_dict["Read1"],
-                        self.exp_parmas["Threads"],
-                        self.exp_parmas["Output_dir"]])
+                        self.exp_params["Threads"],
+                        self.exp_params["Output_dir"]])
 
     def run_trimmomatic(self):
-        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/trimmomatic_se.sh",
+        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/trimmomatic_se.sh",
                         self.sample_dict["Read1"],
-                        self.exp_parmas["Threads"],
-                        self.exp_parmas["Script_dir"]+"/Adapters/TruSeq3-SE.fa",
-                        self.exp_parmas["Output_dir"]])
+                        self.exp_params["Threads"],
+                        self.exp_params["Script_dir"]+"/Adapters/TruSeq3-SE.fa",
+                        self.exp_params["Output_dir"]])
 
     def run_salmon(self):
-        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_se.sh",
+        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/salmon_se.sh",
                         self.sample_dict["Read1"],
-                        self.exp_parmas["Index"],
-                        self.exp_parmas["Threads"],
-                        self.exp_parmas["Output_dir"]])
+                        self.exp_params["Index"],
+                        self.exp_params["Threads"],
+                        self.exp_params["Output_dir"]])
 
 
 class RNAseqPE(RNAseq):
@@ -116,31 +116,31 @@ class RNAseqPE(RNAseq):
                                        output_dir)
 
     def run_fastp(self):
-        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/fastp_pe.sh",
+        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/fastp_pe.sh",
                         self.sample_dict["Read1"],
                         self.sample_dict["Read2"],
-                        self.exp_parmas["Threads"],
-                        self.exp_parmas["Output_dir"]])
+                        self.exp_params["Threads"],
+                        self.exp_params["Output_dir"]])
 
     def run_trimmomatic(self):
-        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/trimmomatic_pe.sh",
+        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/trimmomatic_pe.sh",
                         self.sample_dict["Read1"],
                         self.sample_dict["Read2"],
-                        self.exp_parmas["Threads"],
-                        self.exp_parmas["Script_dir"]+"/Adapters/TruSeq3-PE.fa",
-                        self.exp_parmas["Output_dir"]])
+                        self.exp_params["Threads"],
+                        self.exp_params["Script_dir"]+"/Adapters/TruSeq3-PE.fa",
+                        self.exp_params["Output_dir"]])
 
     def run_salmon(self):
         # debugging
         print(self.sample_dict["Read1"],
               self.sample_dict["Read2"],
-              self.exp_parmas["Index"],
-              self.exp_parmas["Threads"],
-              self.exp_parmas["Output_dir"])
-        subprocess.run(["bash", "-i", self.exp_parmas["Script_dir"]+"/Bash_Scripts/salmon_pe.sh",
+              self.exp_params["Index"],
+              self.exp_params["Threads"],
+              self.exp_params["Output_dir"])
+        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/salmon_pe.sh",
                         self.sample_dict["Read1"],
                         self.sample_dict["Read2"],
-                        self.exp_parmas["Index"],
-                        self.exp_parmas["Threads"],
-                        self.exp_parmas["Output_dir"]])
+                        self.exp_params["Index"],
+                        self.exp_params["Threads"],
+                        self.exp_params["Output_dir"]])
 
