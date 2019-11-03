@@ -12,12 +12,15 @@ library(rjson)
 #read in json sample data
 jsonData = fromJSON(file="experiment_config.txt")
 sampleTable = do.call(rbind.data.frame,jsonData$samples)
+print("sampleTable made, line 15")
 # add file path to salmon quant data
 sampleTable$salmonFile = paste0(jsonData$output_dir,"/",sampleTable$SampleID,".trimmed_salmon/","quant.sf")
 # convert date to date ID
+print("before date-making, line 19")
 sampleTable$DateTime = as.POSIXct(strptime(x = sampleTable$DateTime, format= "%Y-%m-%d %H:%M:%S"))
 sampleTable = sampleTable[order(sampleTable$DateTime,decreasing = F),] %>%
 dplyr::mutate(DateID=paste0("T",as.numeric(as.factor(DateTime))))
+print("after Date-making, line 23")
 # add Exp column summarizing experimental conditions
 sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$Tissue,
