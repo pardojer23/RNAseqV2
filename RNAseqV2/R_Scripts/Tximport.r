@@ -12,6 +12,7 @@ library(rjson)
 #read in json sample data
 print("Before json")
 jsonData = fromJSON(file="experiment_config.txt")
+print("After json")
 sampleTable = do.call(rbind.data.frame,jsonData$samples)
 print("sampleTable made, line 15")
 # add file path to salmon quant data
