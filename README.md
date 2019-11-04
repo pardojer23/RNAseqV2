@@ -1,7 +1,7 @@
 ## RNAseqV2
 This pipeline allows for the analysis of RNAseq data using the pseudo-aligner Salmon
 
-#Installation <br>
+# Installation <br>
 **Dependencies:**<br>
 The folowing dependencies must be pre-installed:
 1. Anaconda3 / Miniconda3
@@ -55,8 +55,15 @@ All 10 columns must be included in the sample table, however they may all be lef
 In order for the pipeline to run successfully at least one of Tissue, Time, Date, or Condition must be included for all of the samples. <br>
 
 To generate an empty sample table with all the required column names execute the pipeline with the following flags: <br>
-`python run_pipeline.py --sample_table {FULL PATH WHERE SAMPLE TABLE SHOULD BE CREATED} --script_dir {FULL PATH TO DIRECTORY WHERE PROGRAM IS INSTALLED} --output_dir {FULL PATH TO DIRECTORY WHERE OUTPUT SHOULD BE SAVED}` 
+`python run_pipeline.py --sample_table {FULL PATH WHERE SAMPLE TABLE SHOULD BE CREATED} --script_dir {FULL PATH TO DIRECTORY WHERE PROGRAM IS INSTALLED} --output_dir {FULL PATH TO DIRECTORY WHERE OUTPUT SHOULD BE SAVED}` <br>
 
+**Execution**
+ 
+To print the help message and exit run: <br>
+`python run_pipeline.py -h`
+
+To start the pipeline run the following command:
+`python run_pipeline.py -s {SAMPLE TABLE} -g {GFF FILE} -f {TRANSCRIPTOME FASTA FILE} -i {TRANSCRIPTOME INDEX BASENAME} -t {NUMBER OF THREADS} -sd{FULL PATH TO INSTALLATION DIRECTORY} -o {OUTPUT DIRECTORY} -de {SET TRUE FOR DE} -r {REFERENCE EXP LEVEL}`
 
 
 
