@@ -3,6 +3,8 @@
 # Created by: Jeremy
 # Created on: 2019-09-19
 
+args = commandArgs(TRUE)
+outputDir = args[1]
 # load required packages
 library(readr)
 library(dplyr)
@@ -31,7 +33,7 @@ sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$DateID,sep="_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"__","_")
 #read in tx2gene file
-tx2gene = read_delim("tx2gene.txt",col_names= T, delim= "\t")
+tx2gene = read_delim(outputDir+"/tx2gene.txt",col_names= T, delim= "\t")
 head(tx2gene)
 
 # get vector of file paths
