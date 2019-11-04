@@ -2,14 +2,16 @@ import subprocess
 import os
 class RNAseq_exp():
 
-    def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, trim):
+    def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, trim, deseq2, ref_levels):
         self.exp_params = {"Index": ind,
                            "Fasta": fasta,
                            "GFF": gff,
                            "Threads": threads,
                            "Script_dir": script_dir,
                            "Output_dir": output_dir,
-                           "Trimmomatic": trim}
+                           "Trimmomatic": trim,
+                           "DESeq2": deseq2,
+                           "Ref_Levels": ref_levels}
 
     def salmon_index(self):
         if os.path.exists(self.exp_params["Output_dir"]+"/"+self.exp_params["Index"]):
@@ -39,6 +41,11 @@ class RNAseq_exp():
     def run_tximport(self):
         subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/run_tximport.sh",
                         self.exp_params["Script_dir"]+"/R_Scripts/Tximport.r"])
+
+    def run_deseq2(self):
+        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/run_deseq2.sh",
+                       self.exp_params["Script_dir"]+"/R_Scripts/DESeq2.r",
+                        self.exp_params["Ref_Levels"]])
 
 
 

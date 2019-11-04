@@ -18,7 +18,7 @@ class MyEncoder(json.JSONEncoder):
 
 
 class Experiment:
-    def __init__(self, sample_table, gff, fasta, ind, threads, script_dir, output_dir, trimmomatic):
+    def __init__(self, sample_table, gff, fasta, ind, threads, script_dir, output_dir, trimmomatic, deseq2, ref_levels):
         self.sample_table = sample_table
         self.gff = gff
         self.fasta = fasta
@@ -27,6 +27,8 @@ class Experiment:
         self.script_dir = script_dir
         self.output_dir = output_dir
         self.trimmomatic= trimmomatic
+        self.deseq2 = deseq2
+        self.ref_levels = ref_levels
 
     def generate_sample_table(self):
         if not os.path.exists(self.sample_table):
@@ -70,6 +72,8 @@ class Experiment:
                             "script_dir": self.script_dir,
                             "output_dir": self.output_dir,
                             "trimmomatic": self.trimmomatic,
+                            "deseq2": self.deseq2,
+                            "ref_levels": self.ref_levels,
                             "samples": self.read_sample_table()}
         for key in experiment_dict["samples"]:
             if experiment_dict["samples"][key]["Read2"] == "":
@@ -106,7 +110,9 @@ def main():
         parser.add_argument("-t", "--threads", help="number of multiprocessing threads", default="1")
         parser.add_argument("-sd", "--script_dir", help="path to the directory where the package is installed", default="./")
         parser.add_argument("-o", "--output", help="Path to output directory")
-        parser.add_argument("-T", "--trimmomatic", help="Set to True to use Trimmomatic instead of fastp", default= "false")
+        parser.add_argument("-T", "--trimmomatic", help="Set to True to use Trimmomatic instead of fastp", default="false")
+        parser.add_argument("-de", "--differential_expression", help="Set to True to run differential expression", default="false")
+        parser.add_argument("-r", "--reference_levels", help="Enter reference Exp conditions seperated by commas", default=None)
         args = parser.parse_args()
         sample_table = args.sample_table
         gff = args.gff
@@ -116,11 +122,27 @@ def main():
         script_dir = args.script_dir
         output_dir = args.output
         trimmomatic = args.trimmomatic
-        if trimmomatic.lower() in ["t", "true", "y", "yes", "1", "on"]:
+        differential_exp = args.differential_expression
+        ref_levels = args.reference_levels
+        truth = ["t", "true", "y", "yes", "1", "on"]
+        if trimmomatic.lower() in truth:
             trim = True
         else:
             trim = False
-        my_experiment = Experiment(sample_table, gff, fasta, index, threads, script_dir, output_dir, trim)
+        if differential_exp.lower() in truth:
+           deseq2 = True
+        else:
+            deseq2 = False
+        my_experiment = Experiment(sample_table,
+                                   gff,
+                                   fasta,
+                                   index,
+                                   threads,
+                                   script_dir,
+                                   output_dir,
+                                   trim,
+                                   deseq2,
+                                   ref_levels)
         if not os.path.exists(sample_table):
             print("{0}: Generating empty sample table...\n"
                   "Please fill in sample information before continuing".format(datetime.now()))

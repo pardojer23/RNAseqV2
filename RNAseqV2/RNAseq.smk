@@ -53,7 +53,9 @@ my_experiment = RNAseqFunctions.RNAseq_exp(experiment_dict["index"],
                                            experiment_dict["threads"],
                                            experiment_dict["script_dir"],
                                            experiment_dict["output_dir"],
-                                           experiment_dict["trimmomatic"])
+                                           experiment_dict["trimmomatic"],
+                                           experiment_dict["deseq2"],
+                                           experiment_dict["ref_levels"])
 object_dict = get_input_objects(experiment_dict)
 samples = [os.path.basename(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
 output_directory=[os.path.dirname(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
@@ -61,9 +63,14 @@ sample_object_hash = {os.path.basename(object_dict[key].sample_dict["Read1"]) : 
 print(samples)
 print(sample_object_hash)
 #
-rule all:
-    input:
-         experiment_dict["output_dir"]+"/txi.RData"
+if experiment_dict["deseq2"] is True:
+    rule all:
+        input:
+            experiment_dict["output_dir"]+"/DESeq2.RData"
+else:
+    rule all:
+        input:
+            experiment_dict["output_dir"]+"/txi.RData"
 
 if experiment_dict["trimmomatic"] is True:
     rule trimmomatic:
@@ -122,3 +129,10 @@ rule tximport:
           experiment_dict["output_dir"]+"/txi.RData"
     run:
         my_experiment.run_tximport()
+rule deseq2:
+    input:
+         experiment_dict["output_dir"]+"/txi.RData"
+    output:
+          experiment_dict["output_dir"]+"/DESeq2.RData"
+    run:
+        my_experiment.run_deseq2()
