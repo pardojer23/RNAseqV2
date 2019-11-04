@@ -47,7 +47,7 @@ class Experiment:
         sample_table = pd.read_csv(self.sample_table)
         sample_table.fillna("", inplace=True)
         for row in sample_table.itertuples(index=True, name="Pandas"):
-                sample_id = os.path.splitext(os.path.basename(getattr(row, "Read1")))[0]
+                sample_id = os.path.basename(getattr(row, "Read1"))
                 sample_dict.setdefault(sample_id, {"SampleID": sample_id,
                                                    "Read1": getattr(row, "Read1"),
                                                    "Read2": getattr(row, "Read2"),

@@ -55,9 +55,9 @@ my_experiment = RNAseqFunctions.RNAseq_exp(experiment_dict["index"],
                                            experiment_dict["output_dir"],
                                            experiment_dict["trimmomatic"])
 object_dict = get_input_objects(experiment_dict)
-samples = [os.path.splitext(os.path.basename(object_dict[key].sample_dict["Read1"]))[0] for key in object_dict.keys()]
+samples = [os.path.basename(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
 output_directory=[os.path.dirname(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
-sample_object_hash = {os.path.splitext(os.path.basename(object_dict[key].sample_dict["Read1"]))[0] : object_dict[key].sample_dict["SampleID"] for key in object_dict.keys()}
+sample_object_hash = {os.path.basename(object_dict[key].sample_dict["Read1"]) : object_dict[key].sample_dict["SampleID"] for key in object_dict.keys()}
 print(samples)
 print(sample_object_hash)
 #
