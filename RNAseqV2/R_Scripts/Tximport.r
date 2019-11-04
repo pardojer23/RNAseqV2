@@ -18,6 +18,7 @@ sampleTable$salmonFile = paste0(jsonData$output_dir,"/",sampleTable$SampleID,"_s
 sampleTable$DateTime = as.POSIXct(strptime(x = sampleTable$DateTime, format= "%Y-%m-%d %H:%M:%S"))
 sampleTable = sampleTable[order(sampleTable$DateTime,decreasing = F),] %>%
 dplyr::mutate(DateID=paste0("T",as.numeric(as.factor(DateTime))))
+sampleTable$DateID = stringr::str_replace_all(sampleTable$DateID,"TNA","")
 # add Exp column summarizing experimental conditions
 sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$Tissue,
