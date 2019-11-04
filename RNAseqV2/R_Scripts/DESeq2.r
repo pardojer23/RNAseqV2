@@ -30,7 +30,7 @@ get_sig_df = function(df,cont){
     return(df)
 }
 expConditions = unique(sampleTable$Exp)
-print(paste("Collecting results using the following treatment(s) as the reference level:",refLevels,sep=" ")
+print(paste("Collecting results using the following treatment(s) as the reference level:",refLevels,sep=" "))
 compare_list = list()
 x=1
 for (i in 1:length(refLevels)){
