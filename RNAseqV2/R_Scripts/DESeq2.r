@@ -47,7 +47,7 @@ df_list = list()
 #print(compare_list)
 for (i in 1:length(compare_list)){
     print(compare_list[i][1])
-    condition_list = unlist(strsplit(compare_list[i],"-"))
+    condition_list = unlist(strsplit(compare_list[i][1],"-"))
     contrast = paste0(condition_list[1],"v",condition_list[2])
     print(contrast)
     df_list[[i]] = assign(paste0(contrast,"_sig"),get_sig_df(assign(contrast,as.data.frame(results(dds_obj,contrast=c("Condition",condition_list[2],condition_list[1]),alpha=0.05,pAdjustMethod = "fdr"))),contrast))
