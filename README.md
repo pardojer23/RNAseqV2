@@ -44,7 +44,7 @@ The sample table should contain 10 columns:
 2. Read2: Path to rev read fastq (leave blank if single end reads)
 3. Replicate: Integer denoting the biological replicate
 4. Tissue: Name of tissue where sample originated from ie. *V3_leaf*
-5. Time: Time of day when samples were collected ie. *4 AM or 4:00:00 am
+5. Time: Time of day when samples were collected ie. *4 AM* or *4:00:00 am*
 6. Date: Calendar date when samples were collected in month day year format
 7. Condition: Description of experimental condition ie. *drought*
 8. Collector: Name of individual who collected the sample
@@ -52,5 +52,11 @@ The sample table should contain 10 columns:
 10. Platform: Sequencing platform used ie. *HiSeq1X150* <br>
 
 All 10 columns must be included in the sample table, however they may all be left empty for any given sample except for the Read1 and replicate columns.
-In order for the pipeline to run successfully at least one of Tissue, Time, Date, or Condition must be included for all of the samples.
+In order for the pipeline to run successfully at least one of Tissue, Time, Date, or Condition must be included for all of the samples. <br>
+
+To generate an empty sample table with all the required column names execute the pipeline with the following flags: <br>
+`python run_pipeline.py --sample_table {FULL PATH WHERE SAMPLE TABLE SHOULD BE CREATED} --script_dir {FULL PATH TO DIRECTORY WHERE PROGRAM IS INSTALLED} --output_dir {FULL PATH TO DIRECTORY WHERE OUTPUT SHOULD BE SAVED}` 
+
+
+
 
