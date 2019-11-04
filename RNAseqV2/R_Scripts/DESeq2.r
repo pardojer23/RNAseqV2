@@ -46,7 +46,7 @@ for (i in 1:length(refLevels)){
 df_list = list()
 print(compare_list)
 for (i in 1:length(compare_list)){
-    print(compare_list[i])
+    print(compare_list[i][1])
     condition_list = unlist(strsplit(compare_list[i],"-"))
     contrast = paste0(condition_list[1],"v",condition_list[2])
     print(contrast)
