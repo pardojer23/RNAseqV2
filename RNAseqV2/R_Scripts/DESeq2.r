@@ -4,7 +4,7 @@
 # Created on: 2019-09-19
 
 args = commandArgs(TRUE)
-refLevels = strsplit(args[1],",")
+refLevels = unlist(strsplit(args[1],","))
 # load required packages
 # load required packages
 library(readr)
