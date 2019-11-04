@@ -10,6 +10,7 @@ library(tximport)
 library (stringr)
 library(rjson)
 #read in json sample data
+print("Before json")
 jsonData = fromJSON(file="experiment_config.txt")
 sampleTable = do.call(rbind.data.frame,jsonData$samples)
 print("sampleTable made, line 15")
