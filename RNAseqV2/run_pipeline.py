@@ -78,6 +78,11 @@ class Experiment:
                 experiment_dict["samples"][key].setdefault("Paired", True)
             DateTime = (dateparser.parse(experiment_dict["samples"][key]["Date"] +
                                          "," + experiment_dict["samples"][key]["Time"]))
+            if DateTime is None:
+                DateTime = ""
+         
+
+
 
             experiment_dict["samples"][key].setdefault("DateTime", DateTime)
         return dict(experiment_dict)
