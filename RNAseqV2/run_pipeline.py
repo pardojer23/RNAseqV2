@@ -89,7 +89,7 @@ class Experiment:
 
     def write_json_experiment(self):
         experiment_dict = self.get_experiment_dict()
-        with open("experiment_config.txt", "w+") as outfile:
+        with open("experiment_config.json", "w+") as outfile:
             json.dump(experiment_dict, outfile, cls=MyEncoder, indent=4)
 
 

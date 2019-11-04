@@ -3,8 +3,6 @@
 # Created by: Jeremy
 # Created on: 2019-09-19
 
-args = commandArgs(TRUE)
-outputDir = args[1]
 # load required packages
 library(readr)
 library(dplyr)
@@ -12,20 +10,14 @@ library(tximport)
 library (stringr)
 library(rjson)
 #read in json sample data
-print("Before json")
-jsonData = fromJSON(file="experiment_config.txt")
-print("After json")
-print(jsonData)
+jsonData = fromJSON(file="experiment_config.json")
 sampleTable = do.call(rbind.data.frame,jsonData$samples)
-print("sampleTable made, line 15")
 # add file path to salmon quant data
 sampleTable$salmonFile = paste0(jsonData$output_dir,"/",sampleTable$SampleID,".trimmed_salmon/","quant.sf")
 # convert date to date ID
-print("before date-making, line 19")
 sampleTable$DateTime = as.POSIXct(strptime(x = sampleTable$DateTime, format= "%Y-%m-%d %H:%M:%S"))
 sampleTable = sampleTable[order(sampleTable$DateTime,decreasing = F),] %>%
 dplyr::mutate(DateID=paste0("T",as.numeric(as.factor(DateTime))))
-print("after Date-making, line 23")
 # add Exp column summarizing experimental conditions
 sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$Tissue,
@@ -33,7 +25,7 @@ sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$DateID,sep="_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"__","_")
 #read in tx2gene file
-tx2gene = read_delim(outputDir+"/tx2gene.txt",col_names= T, delim= "\t")
+tx2gene = read_delim(paste0(jsonData$output_dir,"/tx2gene.txt"),col_names= T, delim= "\t")
 head(tx2gene)
 
 # get vector of file paths
