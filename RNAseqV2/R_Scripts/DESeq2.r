@@ -36,13 +36,13 @@ x=1
 for (i in 1:length(refLevels)){
     for (j in 1:length(expConditions)){
         if (expConditions[j] != refLevels[i]){
-            compare_list[x] = paste0(refLevels[i],"-",expConditions[j])
+            compare_list[x] = paste0(as.character(refLevels[i]),"-",as.character(expConditions[j]))
             x = x+1
         }
     }
 
 }
-compare_list = unlist(strsplit(compare_list,","))
+#compare_list = unlist(strsplit(compare_list,","))
 df_list = list()
 print(compare_list)
 for (i in 1:length(compare_list)){
