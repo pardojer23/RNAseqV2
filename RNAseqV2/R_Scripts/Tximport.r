@@ -25,6 +25,7 @@ sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$Location,
     sampleTable$DateID,sep="_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"__","_")
+sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"_$","")
 #
 head(sampleTable)
 #write sampleTable
