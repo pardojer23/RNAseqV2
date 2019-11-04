@@ -49,7 +49,8 @@ The sample table should contain 10 columns:
 7. Condition: Description of experimental condition ie. *drought*
 8. Collector: Name of individual who collected the sample
 9. Location: Location where samples were collected ie. *Michigan State University HTRC*
-10. Platform: Sequencing platform used ie. *HiSeq1X150*
+10. Platform: Sequencing platform used ie. *HiSeq1X150* <br>
+
 All 10 columns must be included in the sample table, however they may all be left empty for any given sample except for the Read1 and replicate columns.
 In order for the pipeline to run successfully at least one of Tissue, Time, Date, or Condition must be included for all of the samples.
 
