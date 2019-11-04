@@ -25,7 +25,9 @@ sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$DateID,sep="_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"__","_")
 #
-print(sampleTable)
+head(sampleTable)
+#write sampleTable
+write_delim(sampleTable,paste0(jsonData$output_dir,"sampleTable.csv"), delim=",")
 #read in tx2gene file
 tx2gene = read_delim(paste0(jsonData$output_dir,"/tx2gene.txt"),col_names= F, delim= "\t")
 head(tx2gene)
