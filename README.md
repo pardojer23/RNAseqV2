@@ -74,7 +74,7 @@ To start the pipeline run the following command:
 `-i, --index` Basename for transcriptome index. If it does not exist in the output directory a new salmon index will be created. <br>
 `-t, --threads` Number of threads to use for multiprocessing steps. <br>
 `-sd, --script_dir` Full path to directory containing the `run_pipeline.py` file. This directory should also contain the `RNAseqFunctions.py` `RNAseq.smk` files and the `Bash_Scripts` `envs` and `R_Scripts` subdirectories. <br>
-`-o, --output_dir` Full path to directory where output should be stored. If it does not exist the directory will be created. <br>
+`-o, --output_dir` Full path to directory where output should be stored. If it does not exist, the directory will be created. Do not append a final '/' to the the path. <br>
 `-T, --trimmomatic` Set to true in order to run trimmomatic for read trimming instead of FastP. <br>
 `-de, --differential_expression` Set to true to run differential expression analysis. <br>
 `-r, --reference_levels` The reference treatment level (control) for differential expression. 
