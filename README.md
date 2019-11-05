@@ -75,7 +75,7 @@ To start the pipeline run the following command:
 `-t, --threads` Number of threads to use for multiprocessing steps. <br>
 `-sd, --script_dir` Full path to directory containing the `run_pipeline.py` file. This directory should also contain the `RNAseqFunctions.py` `RNAseq.smk` files and the `Bash_Scripts` `envs` and `R_Scripts` subdirectories. <br>
 `-o, --output_dir` Full path to directory where output should be stored. If it does not exist the directory will be created. <br>
-`-T, --trimmomatic` Set to true in order to run trimmomatic for read trimming instead of FastP.
+`-T, --trimmomatic` Set to true in order to run trimmomatic for read trimming instead of FastP. <br>
 `-de, --differential_expression` Set to true to run differential expression analysis. <br>
 `-r, --reference_levels` The reference treatment level (control) for differential expression. 
 Differential expression will be calculated relative to this level. 
