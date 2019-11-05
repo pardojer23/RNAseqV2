@@ -177,10 +177,10 @@ def main():
             exit()
         my_experiment.write_json_experiment()
         if slurm is True:
-            subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake.sh",script_dir])
+            subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake_cluster.sh", script_dir])
 
         else:
-            subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake_cluster.sh",script_dir])
+            subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake.sh", script_dir])
 
 if __name__ == "__main__":
         main()
