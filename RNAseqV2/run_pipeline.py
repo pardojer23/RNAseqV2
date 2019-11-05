@@ -113,6 +113,7 @@ def main():
         parser.add_argument("-T", "--trimmomatic", help="Set to True to use Trimmomatic instead of fastp", default="false")
         parser.add_argument("-de", "--differential_expression", help="Set to True to run differential expression", default="false")
         parser.add_argument("-r", "--reference_levels", help="Enter reference Exp conditions seperated by commas", default=None)
+        parser.add_argument("-c", "--cluster", help="Set to true in order to submit jobs to SLURM cluster", default="false")
         args = parser.parse_args()
         sample_table = args.sample_table
         gff = args.gff
@@ -124,6 +125,7 @@ def main():
         trimmomatic = args.trimmomatic
         differential_exp = args.differential_expression
         ref_levels = args.reference_levels
+        cluster = args.cluster
         truth = ["t", "true", "y", "yes", "1", "on"]
         if trimmomatic.lower() in truth:
             trim = True
@@ -133,6 +135,10 @@ def main():
            deseq2 = True
         else:
             deseq2 = False
+        if cluster.lower() in truth:
+            slurm = True
+        else:
+            slurm = False
         my_experiment = Experiment(sample_table,
                                    gff,
                                    fasta,
