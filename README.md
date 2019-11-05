@@ -48,7 +48,7 @@ The sample table should contain 10 columns:
 6. Date: Calendar date when samples were collected in month day year format
 7. Condition: Description of experimental condition ie. *drought*
 8. Collector: Name of individual who collected the sample
-9. Location: Location where samples were collected ie. *Michigan State University HTRC*
+9. Location: Location where samples were collected ie. *Michigan_State_University_HTRC*
 10. Platform: Sequencing platform used ie. *HiSeq1X150* <br>
 
 All 10 columns must be included in the sample table, however they may all be left empty for any given sample except for the Read1 and replicate columns.
