@@ -4,7 +4,7 @@ This pipeline allows for the analysis of RNAseq data using the pseudo-aligner Sa
 # Installation <br>
 **Dependencies:**<br>
 The folowing dependencies must be pre-installed:
-1. Anaconda3 / Miniconda3
+1. Anaconda3 / Miniconda3 https://docs.conda.io/en/latest/miniconda.html
 2. BASH shell
 
 Other dependencies are installed through the installation script
