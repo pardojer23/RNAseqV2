@@ -66,6 +66,7 @@ To start the pipeline run the following command:
 `python run_pipeline.py -s {SAMPLE TABLE} -g {GFF FILE} -f {TRANSCRIPTOME FASTA FILE} -i {TRANSCRIPTOME INDEX BASENAME} -t {NUMBER OF THREADS} -sd{FULL PATH TO INSTALLATION DIRECTORY} -o {OUTPUT DIRECTORY} -de {SET TRUE FOR DE} -r {REFERENCE EXP LEVEL}` <br>
 
 **Command Line Arguments**
+
 `-h, --help` Print help message and exit <br>
 `-s, --sample_table` Full path to sample table, if file does not exist an empty sample table with only column headers will be created <br>
 `-g, --gff` Full path to reference annotation in gff3 format. Looks for 'mRNA' lines in column 3 and expects 'ID=[TRANCRIPT_ID]' and 'Parent=[GENE_ID]' in column 9. <br>
