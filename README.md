@@ -34,7 +34,7 @@ Finally with the base anaconda / miniconda environment active run the installati
 `python setup.py install`
 # Basic Execution
 To run the pipeline the following inputs are required:
-1. sample table contaiing paths to raw fastq reads and metadata in csv format
+1. sample table containing paths to raw fastq reads and metadata in csv format
 2. reference transcriptome in fasta format
 3. reference genome in gff3 format
 
