@@ -87,7 +87,7 @@ Variables left blank in the sample table will not be included. See the below exa
  |Condition|Tissue|Location|Date|Time|Exp|
  |---------|------|--------|----|----|---|
  |WW|V3_Leaf|MSU_HTRC|01/31/2019|4am|WW_V3_Leaf_MSU_HTRC_T1|
- |Drt|V3_Leaf|""|01/31/2019|5am|Drt_V3_Leaf_T2
+ |Drt|V3_Leaf|""|01/31/2019|5am|Drt_V3_Leaf_T2|
  
  `-c, --cluster` Set to true in order to submit jobs to SLURM cluster (beta)
  
