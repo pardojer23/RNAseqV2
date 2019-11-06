@@ -26,6 +26,7 @@ sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$DateID,sep="_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"__","_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"_$","")
+sampleTable$SampleName = paste0(sampleTable$Exp,"_R",sampleTable$Replicate)
 #
 head(sampleTable)
 #write sampleTable
@@ -41,12 +42,12 @@ txi_LS = tximport(files = files,type="salmon", tx2gene=tx2gene,countsFromAbundan
 txi = tximport(files = files,type="salmon", tx2gene=tx2gene)
 #get TPM
 TPM_LS = as.data.frame(txi_LS$abundance)
-colnames(TPM_LS) = sampleTable$Sample
+colnames(TPM_LS) = sampleTable$SampleName
 TPM_LS$GeneID = rownames(TPM_LS)
 write_delim(TPM_LS,paste0(jsonData$output_dir,"/TPM_LS.txt"),delim="\t")
 Counts_LS = as.data.frame(txi_LS$counts)
-colnames(Counts_LS) = sampleTable$Sample
+colnames(Counts_LS) = sampleTable$SampleName
 Counts = as.data.frame(txi$counts)
-colnames(Counts) = sampleTable$Sample
+colnames(Counts) = sampleTable$SampleName
 #save the results
 save.image(paste0(jsonData$output_dir,"/txi.RData"))
