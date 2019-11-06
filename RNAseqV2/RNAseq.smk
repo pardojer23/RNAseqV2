@@ -98,7 +98,7 @@ if experiment_dict["trimmomatic"] is True:
         input:
             expand("{directory}/{sample}", directory=output_directory, sample=samples)
         output:
-            experiment_dict["output_dir"]+"/{sample}.trimmed"
+            experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed"
         run:
             # print(sample_object_hash.keys())
             print("--INFO-- {0}: Running trimmomatic for sample {1}".format(datetime.now(), wildcards.sample))
@@ -108,7 +108,7 @@ else:
         input:
              expand("{directory}/{sample}", directory=output_directory, sample=samples)
         output:
-              experiment_dict["output_dir"]+"/{sample}.trimmed"
+              experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed"
         run:
             # print(sample_object_hash.keys())
             print("--INFO-- {0}: Running fastp for sample {1}".format(datetime.now(), wildcards.sample))
@@ -127,10 +127,10 @@ rule salmon_index:
 
 rule salmon_quant:
     input:
-         fastq = expand(experiment_dict["output_dir"]+"/{sample}.trimmed", sample=samples),
+         fastq = expand(experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed", sample=samples),
          index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
     output:
-          experiment_dict["output_dir"]+"/{sample}_salmon/quant.sf"
+          experiment_dict["output_dir"]+"/salmon_quant/{sample}_salmon/quant.sf"
 
     run:
         print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
@@ -145,7 +145,7 @@ rule tx2gene:
 rule tximport:
     input:
          tx2gene = experiment_dict["output_dir"]+"/tx2gene.txt",
-         samples = expand((experiment_dict["output_dir"]+"/{sample}_salmon/quant.sf"), sample=samples)
+         samples = expand((experiment_dict["output_dir"]+"/salmon_quant/{sample}_salmon/quant.sf"), sample=samples)
     output:
           experiment_dict["output_dir"]+"/txi.RData"
     run:
