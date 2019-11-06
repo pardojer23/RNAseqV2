@@ -108,7 +108,7 @@ else:
         input:
              expand("{directory}/{sample}", directory=output_directory, sample=samples)
         output:
-              experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed"
+              experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed.fq"
         run:
             # print(sample_object_hash.keys())
             print("--INFO-- {0}: Running fastp for sample {1}".format(datetime.now(), wildcards.sample))
@@ -127,7 +127,7 @@ rule salmon_index:
 
 rule salmon_quant:
     input:
-         fastq = expand(experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed", sample=samples),
+         fastq = expand(experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed.fq", sample=samples),
          index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
     output:
           experiment_dict["output_dir"]+"/salmon_quant/{sample}_salmon/quant.sf"

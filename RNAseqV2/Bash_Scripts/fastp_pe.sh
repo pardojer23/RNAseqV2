@@ -13,8 +13,8 @@ mkdir -p ${OUTPUT}/trimmed_reads
 fastp --detect_adapter_for_pe \
 -i ${READ1} \
 -I ${READ2} \
--o ${OUTPUT}/trimmed_reads/${READ1N}.trimmed \
--O ${OUTPUT}/trimmed_reads/${READ2N}.trimmed \
+-o ${OUTPUT}/trimmed_reads/${READ1N}.trimmed.fq \
+-O ${OUTPUT}/trimmed_reads/${READ2N}.trimmed.fq \
 --json ${OUTPUT}/fastp_reports/${READ1N}_fastp.json \
 --html ${OUTPUT}/fastp_reports/${READ1N}_fastp.html \
 --thread ${THREADS}
