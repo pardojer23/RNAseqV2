@@ -130,7 +130,7 @@ rule salmon_quant:
          fastq = expand(experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed.fq", sample=samples),
          index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
     output:
-          experiment_dict["output_dir"]+"/salmon_quant/{sample}_salmon/quant.sf"
+          experiment_dict["output_dir"]+"/salmon_quant/{sample}.trimmed.fq_salmon/quant.sf"
 
     run:
         print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
@@ -145,7 +145,7 @@ rule tx2gene:
 rule tximport:
     input:
          tx2gene = experiment_dict["output_dir"]+"/tx2gene.txt",
-         samples = expand((experiment_dict["output_dir"]+"/salmon_quant/{sample}_salmon/quant.sf"), sample=samples)
+         samples = expand((experiment_dict["output_dir"]+"/salmon_quant/{sample}.trimmed.fq_salmon/quant.sf"), sample=samples)
     output:
           experiment_dict["output_dir"]+"/txi.RData"
     run:
