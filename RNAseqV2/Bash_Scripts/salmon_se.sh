@@ -6,7 +6,8 @@ THREADS=$3
 OUTPUT=$4
 conda activate salmon
 cd ${OUTPUT}
+mkdir -p ${OUTPUT}/salmon_quant
 salmon quant -i ${INDEX} -l A --threads ${THREADS} \
 -r ${READ1} \
 --validateMappings --seqBias --gcBias \
--o ${OUTPUT}/${READ1N}_salmon
+-o ${OUTPUT}/salmon_quant/${READ1N}_salmon

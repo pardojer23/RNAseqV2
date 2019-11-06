@@ -8,12 +8,13 @@ OUTPUT=$4
 conda activate fastp
 mkdir -p ${OUTPUT}
 mkdir -p ${OUTPUT}/fastp_reports
+mkdir -p ${OUTPUT}/trimmed_reads
 
 fastp --detect_adapter_for_pe \
 -i ${READ1} \
 -I ${READ2} \
--o ${OUTPUT}/${READ1N}.trimmed \
--O ${OUTPUT}/${READ2N}.trimmed \
+-o ${OUTPUT}/trimmed_reads/${READ1N}.trimmed \
+-O ${OUTPUT}/trimmed_reads/${READ2N}.trimmed \
 --json ${OUTPUT}/fastp_reports/${READ1N}_fastp.json \
 --html ${OUTPUT}/fastp_reports/${READ1N}_fastp.html \
 --thread ${THREADS}
