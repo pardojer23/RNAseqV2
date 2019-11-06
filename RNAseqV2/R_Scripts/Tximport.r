@@ -13,7 +13,7 @@ library(rjson)
 jsonData = fromJSON(file="experiment_config.json")
 sampleTable = do.call(rbind.data.frame,jsonData$samples)
 # add file path to salmon quant data
-sampleTable$salmonFile = paste0(jsonData$output_dir,"/",sampleTable$SampleID,"_salmon/","quant.sf")
+sampleTable$salmonFile = paste0(jsonData$output_dir,"/salmon_quant/",sampleTable$SampleID,".trimmed.fq_salmon/","quant.sf")
 # convert date to date ID
 sampleTable$DateTime = as.POSIXct(strptime(x = sampleTable$DateTime, format= "%Y-%m-%d %H:%M:%S"))
 sampleTable = sampleTable[order(sampleTable$DateTime,decreasing = F),] %>%
