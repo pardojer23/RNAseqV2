@@ -33,7 +33,7 @@ Then navigate to the directory containing the `setup.py` file. <br>
 Finally with the base anaconda / miniconda environment active run the installation script. <br>
 `python setup.py install`
 
-#Update
+# Update
 
 To update an existing installation run the following two commands from the directory where the pipeline is installed: <br>
 
