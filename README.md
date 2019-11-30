@@ -34,6 +34,7 @@ Finally with the base anaconda / miniconda environment active run the installati
 `python setup.py install`
 
 #Update
+
 To update an existing installation run the following two commands from the directory where the pipeline is installed: <br>
 
 1. `git pull`
