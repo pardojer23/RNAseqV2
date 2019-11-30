@@ -8,5 +8,5 @@ conda activate trimmomatic
 mkdir -p ${OUTPUT}
 trimmomatic SE -threads ${THREADS} -phred33 -trimlog ${OUTPUT}/${READ1N}.trimlog \
 ${READ1} \
-${OUTPUT}/${READ1N}.trimmed \
+${OUTPUT}/${READ1N}.trimmed.fq \
 ILLUMINACLIP:${ADAPTERS}:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
