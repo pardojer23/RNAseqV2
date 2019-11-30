@@ -32,6 +32,12 @@ Then navigate to the directory containing the `setup.py` file. <br>
 `cd RNAseqV2`<br>
 Finally with the base anaconda / miniconda environment active run the installation script. <br>
 `python setup.py install`
+
+#Update
+To update an existing installation run the following two commands from the directory where the pipeline is installed: <br>
+
+1. `git pull`
+2. `python setup.py install`
 # Basic Execution
 To run the pipeline the following inputs are required:
 1. sample table containing paths to raw fastq reads and metadata in csv format
