@@ -130,7 +130,7 @@ def main():
         parser.add_argument("-i", "--index", help="Basename for transcriptome index", default="myTranscriptIndex")
         parser.add_argument("-t", "--threads", help="number of multiprocessing threads", default="1")
         parser.add_argument("-sd", "--script_dir", help="path to the directory where the package is installed", default="./")
-        parser.add_argument("-o", "--output", help="Path to output directory")
+        parser.add_argument("-o", "--output_dir", help="Path to output directory")
         parser.add_argument("-T", "--trimmomatic", help="Set to True to use Trimmomatic instead of fastp", default="false")
         parser.add_argument("-de", "--differential_expression", help="Set to True to run differential expression", default="false")
         parser.add_argument("-r", "--reference_levels", help="Enter reference Exp conditions seperated by commas", default=None)
@@ -142,7 +142,7 @@ def main():
         index = args.index
         threads = args.threads
         script_dir = args.script_dir
-        output_dir = args.output
+        output_dir = args.output_dir
         trimmomatic = args.trimmomatic
         differential_exp = args.differential_expression
         ref_levels = args.reference_levels
@@ -175,7 +175,10 @@ def main():
                   "Please fill in sample information before continuing".format(datetime.now()))
             my_experiment.generate_sample_table()
             exit()
-        my_experiment.write_json_experiment()
+        if os.path.isfile(sample_table):
+            my_experiment.write_json_experiment()
+        else:
+            print("{0} ERROR: The path {1} is not a file!".format(datetime.now(), sample_table))
         if slurm is True:
             subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake_cluster.sh", script_dir])
 
