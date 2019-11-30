@@ -179,6 +179,7 @@ def main():
             my_experiment.write_json_experiment()
         else:
             print("{0} ERROR: The path {1} is not a file!".format(datetime.now(), sample_table))
+            exit(1)
         if slurm is True:
             subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake_cluster.sh", script_dir])
 
