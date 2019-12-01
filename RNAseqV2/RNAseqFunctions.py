@@ -55,8 +55,12 @@ class RNAseq_exp():
                             for i in range(len(id_line)):
                                 if id_line[i].startswith("ID="):
                                     transcript_id = id_line[i].replace("ID=", "")
+                                    # temporary fix for gff3 files with ID=transcript:[ID] pattern
+                                    transcript_id = transcript_id.replace("transcript:", "")
                                 elif id_line[i].startswith("Parent="):
                                     gene_id = id_line[i].replace("Parent=", "")
+                                    # temporary fix for gff3 files with ID=transcript:[ID] pattern
+                                    gene_id = gene_id.replace("gene:", "")
                             tx2gene.write(transcript_id + "\t" + gene_id + "\n")
 
     def run_tximport(self):
