@@ -1,0 +1,7 @@
+Read1,Read2,Replicate,Tissue,Time,Date,Condition,Collector,Location,Platform
+./test_samples/sample1_R1.fq,./test_samples/sample1_R2.fq,1,leaf,4am,1/1/2019,WW,Jeremy Pardo,MSU,ILLUMINA_2X150
+./test_samples/sample2.fq,,2,4:00am,01/01/19,WW,,MSU,,
+./test_samples/sample3.fq,,3,4:00:00 am,1-1-2019,WW,MSU,,
+./test_samples/sample4.fq,,1,4am,,Drt,,,
+./test_samples/sample5.fq,,2,4am,,Drt,,,
+./test_samples/sample6.fq,,3,4am,,Drt,,,
