@@ -112,7 +112,7 @@ else:
               experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed.fq"
         run:
             # print(sample_object_hash.keys())
-            print("--INFO-- {0}: Running fastp for sample {1} in directory {2}".format(datetime.now(), wildcards.sample, wildcards.output_directory))
+           # print("--INFO-- {0}: Running fastp for sample {1} in directory {2}".format(datetime.now(), wildcards.sample, wildcards.output_directory))
             object_dict[sample_object_hash[wildcards.sample]].run_fastp()
 
 rule salmon_index:
