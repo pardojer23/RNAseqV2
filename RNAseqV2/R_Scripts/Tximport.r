@@ -24,6 +24,7 @@ sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$Tissue,
     sampleTable$Location,
     sampleTable$DateID,sep="_")
+sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"___","_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"__","_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"_$","")
 sampleTable$SampleName = paste0(sampleTable$Exp,"_R",sampleTable$Replicate)
