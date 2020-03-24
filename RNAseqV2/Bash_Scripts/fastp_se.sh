@@ -3,6 +3,7 @@ READ1=$1
 READ1N=$(basename ${READ1})
 THREADS=$2
 OUTPUT=$3
+source $HOME/.bashrc
 conda activate fastp
 mkdir -p ${OUTPUT}
 mkdir -p ${OUTPUT}/fastp_reports

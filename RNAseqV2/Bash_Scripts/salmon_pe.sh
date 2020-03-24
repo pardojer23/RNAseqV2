@@ -5,6 +5,7 @@ READ1N=$(basename ${READ1})
 INDEX=$3
 THREADS=$4
 OUTPUT=$5
+source $HOME/.bashrc
 conda activate salmon
 cd ${OUTPUT}
 mkdir -p ${OUTPUT}/salmon_quant

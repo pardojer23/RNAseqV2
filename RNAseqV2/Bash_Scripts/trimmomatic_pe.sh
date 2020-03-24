@@ -6,6 +6,7 @@ READ2N=$(basename ${READ2})
 THREADS=$3
 ADAPTERS=$4
 OUTPUT=$5
+source $HOME/.bashrc
 conda activate trimmomatic
 mkdir -p ${OUTPUT}
 mkdir -p ${OUTPUT}/trimmed_reads
