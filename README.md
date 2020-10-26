@@ -32,7 +32,8 @@ Then navigate to the directory containing the `setup.py` file. <br>
 `cd RNAseqV2`<br>
 Finally with the base anaconda / miniconda environment active run the installation script. <br>
 `python setup.py install` <br>
-If you recieve a permission error try intstalling with `sudo python setup.py install` or `python setup.py install --user`
+If you recieve a permission error try intstalling with `sudo python setup.py install` or 
+`python setup.py install --user`
 
 # Update
 
