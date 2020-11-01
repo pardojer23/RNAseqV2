@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 
 conda update --all
+conda init bash
 conda env create --file ./RNAseqV2/envs/salmon.yml
 conda env create --file ./RNAseqV2/envs/trimmomatic.yml
 conda env create --file ./RNAseqV2/envs/fastp.yml
 conda env create --file ./RNAseqV2/envs/tximport.yml
 conda env create --file ./RNAseqV2/envs/RNAseqV2.yml
 
-source activate tximport
+FILE=~/.bashrc
+if [-f "$FILE"]; then
+  source ~/.bashrc
+else
+  touch ~/.bashrc
+  conda init bash
+  source ~/.bashrc
+fi
+conda activate tximport
 Rscript ./RNAseqV2/R_Scripts/Install.r
 conda deactivate
-conda init bash
+
