@@ -10,11 +10,11 @@ conda env create --file ./RNAseqV2/envs/RNAseqV2.yml
 
 FILE=~/.bashrc
 if [-f "$FILE"]; then
-  source ~/.bashrc
+  source $HOME/.bashrc
 else
-  touch ~/.bashrc
+  touch $HOME/.bashrc
   conda init bash
-  source ~/.bashrc
+  source $HOME/.bashrc
 fi
 conda activate tximport
 Rscript ./RNAseqV2/R_Scripts/Install.r
