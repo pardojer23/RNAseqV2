@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash --init-file
 
 conda update --all
 conda init bash

@@ -12,4 +12,4 @@ setup(name='RNAseqV2',
                 'pandas',
                 'numpy',
                 'dateparser'])
-subprocess.run(["bash -i", "./INSTALL.sh"])
+subprocess.run(["bash", "./INSTALL.sh"])
