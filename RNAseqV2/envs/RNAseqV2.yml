@@ -6,8 +6,8 @@ channels:
   - anaconda-fusion
   - defaults
 dependencies:
-  - snakemake
-  - python=3.6.*
+  - snakemake=3.13.3
+  - python>=3.6
   - pandas
   - dateparser
 

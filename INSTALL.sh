@@ -16,7 +16,9 @@ else
   conda init bash
   source $HOME/.bashrc
 fi
+
 conda activate tximport
 Rscript ./RNAseqV2/R_Scripts/Install.r
 conda deactivate
+
 
