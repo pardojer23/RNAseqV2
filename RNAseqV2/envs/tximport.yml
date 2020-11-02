@@ -6,10 +6,10 @@ channels:
   - anaconda-fusion
   - defaults
 dependencies:
-  - python=3.6.*
+  - python>=3.6
   - pandas
   - dateparser
-  - r-base=3.6.1
+  - r-base>=3.6.1
 
 
 

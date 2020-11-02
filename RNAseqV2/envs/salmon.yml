@@ -5,7 +5,7 @@ channels:
   - anaconda-fusion
   - defaults
 dependencies:
-  - python=3.6.*
+  - python>=3.6
   - salmon=0.14.2
   - snakemake
   - pandas
