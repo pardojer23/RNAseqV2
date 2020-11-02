@@ -1,4 +1,4 @@
-#!/usr/bin/env bash --init-file
+#!/usr/bin/env bash
 
 conda update --all
 conda init bash
@@ -23,16 +23,24 @@ update_env RNAseqV2
 
 
 FILE=~/.bashrc
-if [-f "$FILE"]; then
+if [[ -f "$FILE" ]];then
   source $HOME/.bashrc
+  CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+  if [[ -f "${CONDA_SHELL}" ]]; then
+    source ${CONDA_SHELL}
+  fi
 else
   touch $HOME/.bashrc
   conda init bash
   source $HOME/.bashrc
+  CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+   if [[ -f "${CONDA_SHELL}" ]]; then
+    source ${CONDA_SHELL}
+  fi
 fi
-
 conda activate tximport
 Rscript ./RNAseqV2/R_Scripts/Install.r
 conda deactivate
 
 
+#source ~/miniconda3/etc/profile.d/conda.sh

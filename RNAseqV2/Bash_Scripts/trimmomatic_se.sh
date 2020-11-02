@@ -5,6 +5,13 @@ THREADS=$2
 ADAPTERS=$3
 OUTPUT=$4
 source $HOME/.bashrc
+CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+  if [[ -f "${CONDA_SHELL}" ]]; then
+    source ${CONDA_SHELL}
+  else
+    echo "Failed to find conda shell check that ${CONDA_SHELL} exists"
+    exit 1
+  fi
 conda activate trimmomatic
 mkdir -p ${OUTPUT}
 trimmomatic SE -threads ${THREADS} -phred33 -trimlog ${OUTPUT}/${READ1N}.trimlog \
