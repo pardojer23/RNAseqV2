@@ -41,6 +41,3 @@ fi
 conda activate tximport
 Rscript ./RNAseqV2/R_Scripts/Install.r
 conda deactivate
-
-
-#source ~/miniconda3/etc/profile.d/conda.sh
