@@ -8,14 +8,14 @@ The folowing dependencies must be pre-installed:
 2. BASH shell
 
 Other dependencies are installed through the installation script
-1. python=3.6.*
+1. python>=3.6
 2. pandas
 3. dateparser
 4. snakemake
 5. fastp
 6. trimmomatic
 7. salmon
-8. r-base=3.6.*
+8. r-base>=4.0.0
 
 The following R packages are also required and are installed via the installation script
 1. BiocManager
