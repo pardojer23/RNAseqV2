@@ -1,12 +1,12 @@
 name: RNAseqV2
 channels:
   - bioconda
-  - anaconda
   - conda-forge
+  - anaconda
   - anaconda-fusion
   - defaults
 dependencies:
-  - snakemake=3.13.3
+  - snakemake>=5.2.0
   - python>=3.6
   - pandas
   - dateparser

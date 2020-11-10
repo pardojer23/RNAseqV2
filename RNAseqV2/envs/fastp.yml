@@ -9,5 +9,5 @@ dependencies:
   - python>=3.6
   - pandas
   - dateparser
-  - snakemake=3.13.3
+  - snakemake>=5.2.0
   - fastp

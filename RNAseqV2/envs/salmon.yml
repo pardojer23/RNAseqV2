@@ -7,7 +7,7 @@ channels:
 dependencies:
   - python>=3.6
   - salmon=0.14.2
-  - snakemake
+  - snakemake>=5.2.0
   - pandas
   - dateparser
 
