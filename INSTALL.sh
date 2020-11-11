@@ -25,7 +25,7 @@ update_env RNAseqV2
 FILE=~/.bashrc
 if [[ -f "$FILE" ]];then
   source $HOME/.bashrc
-  CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+  CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" ${HOME}/.bashrc)"
   if [[ -f "${CONDA_SHELL}" ]]; then
     source ${CONDA_SHELL}
   fi
@@ -33,9 +33,12 @@ else
   touch $HOME/.bashrc
   conda init bash
   source $HOME/.bashrc
-  CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+  CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" ${HOME}/.bashrc)"
    if [[ -f "${CONDA_SHELL}" ]]; then
     source ${CONDA_SHELL}
+   else
+     echo "ERROR: could not find ${HOME}/.*/etc/profile.d/conda.sh in the ${HOME}/.bashrc file."
+     exit 1
   fi
 fi
 conda activate tximport
