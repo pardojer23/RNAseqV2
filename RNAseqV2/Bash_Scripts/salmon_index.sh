@@ -3,8 +3,8 @@ FASTA=$1
 INDEX=$2
 OUTPUT=$3
 cd ${OUTPUT}
-source $HOME/.bashrc
-CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+source ${HOME}/.bashrc
+CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" ${HOME}/.bashrc)"
   if [[ -f "${CONDA_SHELL}" ]]; then
     source ${CONDA_SHELL}
   else

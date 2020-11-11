@@ -6,8 +6,8 @@ READ2N=$(basename ${READ2})
 THREADS=$3
 ADAPTERS=$4
 OUTPUT=$5
-source $HOME/.bashrc
-CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+source ${HOME}/.bashrc
+CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" ${HOME}/.bashrc)"
   if [[ -f "${CONDA_SHELL}" ]]; then
     source ${CONDA_SHELL}
   else

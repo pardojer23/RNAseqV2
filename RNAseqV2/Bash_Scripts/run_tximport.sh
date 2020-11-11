@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 TXIMPORT=$1
-source $HOME/.bashrc
-CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" $HOME/.bashrc)"
+source ${HOME}/.bashrc
+CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" ${HOME}/.bashrc)"
   if [[ -f "${CONDA_SHELL}" ]]; then
     source ${CONDA_SHELL}
   else
