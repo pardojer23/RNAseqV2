@@ -184,7 +184,7 @@ def main():
             subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake_cluster.sh", script_dir])
 
         else:
-            subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake.sh", script_dir])
+            subprocess.run(["bash", "-i", script_dir+"/Bash_Scripts/run_snakemake.sh", script_dir, threads])
 
 if __name__ == "__main__":
         main()
