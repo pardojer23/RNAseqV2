@@ -39,7 +39,8 @@ class MyEncoder(json.JSONEncoder):
 
 
 class Experiment:
-    def __init__(self, sample_table, gff, fasta, ind, threads, script_dir, output_dir, trimmomatic, deseq2, ref_levels):
+    def __init__(self, sample_table, gff, fasta, ind, threads,
+                 script_dir, output_dir, trimmomatic, deseq2, ref_levels, quant_seq):
         self.sample_table = sample_table
         self.gff = gff
         self.fasta = fasta
@@ -50,6 +51,7 @@ class Experiment:
         self.trimmomatic= trimmomatic
         self.deseq2 = deseq2
         self.ref_levels = ref_levels
+        self.quant_seq = quant_seq
 
     def generate_sample_table(self):
         if not os.path.exists(self.sample_table):
@@ -95,6 +97,7 @@ class Experiment:
                             "trimmomatic": self.trimmomatic,
                             "deseq2": self.deseq2,
                             "ref_levels": self.ref_levels,
+                            "quant_seq": self.quant_seq,
                             "samples": self.read_sample_table()}
         for key in experiment_dict["samples"]:
             if experiment_dict["samples"][key]["Read2"] == "":
@@ -135,6 +138,7 @@ def main():
         parser.add_argument("-de", "--differential_expression", help="Set to True to run differential expression", default="false")
         parser.add_argument("-r", "--reference_levels", help="Enter reference Exp conditions seperated by commas", default=None)
         parser.add_argument("-c", "--cluster", help="Set to true in order to submit jobs to SLURM cluster", default="false")
+        parser.add_argument("-q", "--quant_seq", help="Set to true if using QuantSeq 3' RNAseq libraries", default="false")
         args = parser.parse_args()
         sample_table = args.sample_table
         gff = args.gff
@@ -147,6 +151,7 @@ def main():
         differential_exp = args.differential_expression
         ref_levels = args.reference_levels
         cluster = args.cluster
+        quant_seq = args.quant_seq
         truth = ["t", "true", "y", "yes", "1", "on"]
         if trimmomatic.lower() in truth:
             trim = True
@@ -160,6 +165,10 @@ def main():
             slurm = True
         else:
             slurm = False
+        if quant_seq.lower() in truth:
+            quant_seq = True
+        else:
+            quant_seq = False
         my_experiment = Experiment(sample_table,
                                    gff,
                                    fasta,
@@ -169,7 +178,8 @@ def main():
                                    output_dir,
                                    trim,
                                    deseq2,
-                                   ref_levels)
+                                   ref_levels,
+                                   quant_seq)
         if not os.path.exists(sample_table):
             print("{0}: Generating empty sample table...\n"
                   "Please fill in sample information before continuing".format(datetime.now()))

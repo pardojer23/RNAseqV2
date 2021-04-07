@@ -64,7 +64,8 @@ def get_input_objects(experiment_dict):
                                                             experiment_dict["fasta"],
                                                             experiment_dict["threads"],
                                                             experiment_dict["script_dir"],
-                                                            experiment_dict["output_dir"]))
+                                                            experiment_dict["output_dir"],
+                                                            experiment_dict["quant_seq"]))
     return object_dict
 
 experiment_dict = read_config("experiment_config.json")
@@ -127,15 +128,16 @@ rule salmon_index:
         my_experiment.salmon_index()
 
 rule salmon_quant:
-    input:
-         fastq = expand(experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed.fq", sample=samples),
-         index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
-    output:
-          experiment_dict["output_dir"]+"/salmon_quant/{sample}.trimmed.fq_salmon/quant.sf"
+        input:
+            fastq = expand(experiment_dict["output_dir"]+"/trimmed_reads/{sample}.trimmed.fq", sample=samples),
+            index = experiment_dict["output_dir"]+"/"+experiment_dict["index"]
+        output:
+            experiment_dict["output_dir"]+"/salmon_quant/{sample}.trimmed.fq_salmon/quant.sf"
 
-    run:
-        print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
-        object_dict[sample_object_hash[wildcards.sample]].run_salmon()
+        run:
+            print("--INFO-- {0}: Running Salmon quant for sample {1}".format(datetime.now(), wildcards.sample))
+            object_dict[sample_object_hash[wildcards.sample]].run_salmon()
+
 rule tx2gene:
     input:
          experiment_dict["gff"]

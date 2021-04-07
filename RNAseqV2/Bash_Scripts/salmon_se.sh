@@ -17,5 +17,5 @@ cd ${OUTPUT}
 mkdir -p ${OUTPUT}/salmon_quant
 salmon quant -i ${INDEX} -l A --threads ${THREADS} \
 -r ${READ1} \
---validateMappings --seqBias --gcBias \
+--validateMappings --seqBias --gcBias --rangeFactorizationBins 4 \
 -o ${OUTPUT}/salmon_quant/${READ1N}_salmon

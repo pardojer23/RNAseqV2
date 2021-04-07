@@ -23,7 +23,7 @@ import subprocess
 import os
 class RNAseq_exp():
 
-    def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, trim, deseq2, ref_levels):
+    def __init__(self, ind, fasta, gff, threads, script_dir, output_dir, trim, deseq2, ref_levels, quant_seq):
         self.exp_params = {"Index": ind,
                            "Fasta": fasta,
                            "GFF": gff,
@@ -32,7 +32,8 @@ class RNAseq_exp():
                            "Output_dir": output_dir,
                            "Trimmomatic": trim,
                            "DESeq2": deseq2,
-                           "Ref_Levels": ref_levels}
+                           "Ref_Levels": ref_levels,
+                           "Quant_Seq": quant_seq}
 
     def salmon_index(self):
         if os.path.exists(self.exp_params["Output_dir"]+"/"+self.exp_params["Index"]):
@@ -65,7 +66,8 @@ class RNAseq_exp():
 
     def run_tximport(self):
         subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/run_tximport.sh",
-                        self.exp_params["Script_dir"]+"/R_Scripts/Tximport.r"])
+                        self.exp_params["Script_dir"]+"/R_Scripts/Tximport.r",
+                        self.exp_params["Quant_Seq"]])
 
     def run_deseq2(self):
         subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/run_deseq2.sh",
@@ -84,7 +86,7 @@ class RNAseq():
                             "Replicate": replicate,
                             "Tissue": tissue,
                             "Condition": condition,
-                            "Paired": paired}
+                            "Paired": paired }
         self.exp_params = {"Index": ind,
                            "Threads": threads,
                            "Fasta": fasta,
@@ -95,7 +97,7 @@ class RNAseq():
 
 class RNAseqSE(RNAseq):
     def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, condition, paired,
-                 ind, fasta, threads, script_dir, output_dir):
+                 ind, fasta, threads, script_dir, output_dir, quant_seq):
         super(RNAseqSE, self).__init__(sample_id,
                                        read1,
                                        read2,
@@ -108,7 +110,8 @@ class RNAseqSE(RNAseq):
                                        fasta,
                                        threads,
                                        script_dir,
-                                       output_dir)
+                                       output_dir,)
+        self.exp_params["quant_seq"] = quant_seq
 
     def run_fastp(self):
         subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/fastp_se.sh",
@@ -124,12 +127,20 @@ class RNAseqSE(RNAseq):
                         self.exp_params["Output_dir"]])
 
     def run_salmon(self):
-        subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/salmon_se.sh",
-                        self.exp_params["Output_dir"]+"/trimmed_reads/" +
-                        os.path.basename(self.sample_dict["Read1"])+".trimmed.fq",
-                        self.exp_params["Index"],
-                        self.exp_params["Threads"],
-                        self.exp_params["Output_dir"]])
+        if self.exp_params["quant_seq"] is True:
+            subprocess.run(["bash", "-i", self.exp_params["Script_dir"] + "/Bash_Scripts/salmon_3prime.sh",
+                            self.exp_params["Output_dir"] + "/trimmed_reads/" +
+                            os.path.basename(self.sample_dict["Read1"]) + ".trimmed.fq",
+                            self.exp_params["Index"],
+                            self.exp_params["Threads"],
+                            self.exp_params["Output_dir"]])
+        else:
+            subprocess.run(["bash", "-i", self.exp_params["Script_dir"] + "/Bash_Scripts/salmon_se.sh",
+                            self.exp_params["Output_dir"] + "/trimmed_reads/" +
+                            os.path.basename(self.sample_dict["Read1"]) + ".trimmed.fq",
+                            self.exp_params["Index"],
+                            self.exp_params["Threads"],
+                            self.exp_params["Output_dir"]])
 
 
 class RNAseqPE(RNAseq):
