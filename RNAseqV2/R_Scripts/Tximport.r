@@ -4,6 +4,7 @@
 # Created on: 2019-09-19
 args = commandArgs(TRUE)
 quantSeq = unlist(strsplit(args[1],","))
+print(quantSeq)
 # load required packages
 library(readr)
 library(dplyr)
