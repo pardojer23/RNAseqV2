@@ -112,7 +112,7 @@ class RNAseqSE(RNAseq):
                                        fasta,
                                        threads,
                                        script_dir,
-                                       output_dir,)
+                                       output_dir)
         self.exp_params["quant_seq"] = quant_seq
 
     def run_fastp(self):

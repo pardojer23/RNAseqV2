@@ -51,7 +51,6 @@ def get_input_objects(experiment_dict):
                                                             experiment_dict["script_dir"],
                                                             experiment_dict["output_dir"]))
         else:
-            print(experiment_dict["quant_seq"])
             object_dict.setdefault(experiment_dict["samples"][sample]["SampleID"],
                                    RNAseqFunctions.RNAseqSE(experiment_dict["samples"][sample]["SampleID"],
                                                             experiment_dict["samples"][sample]["Read1"],
