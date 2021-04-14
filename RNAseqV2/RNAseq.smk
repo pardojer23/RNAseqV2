@@ -77,7 +77,8 @@ my_experiment = RNAseqFunctions.RNAseq_exp(experiment_dict["index"],
                                            experiment_dict["output_dir"],
                                            experiment_dict["trimmomatic"],
                                            experiment_dict["deseq2"],
-                                           experiment_dict["ref_levels"])
+                                           experiment_dict["ref_levels"],
+                                           experiment_dict["quant_seq"])
 object_dict = get_input_objects(experiment_dict)
 samples = [os.path.basename(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
 output_directory=[os.path.dirname(object_dict[key].sample_dict["Read1"]) for key in object_dict.keys()]
