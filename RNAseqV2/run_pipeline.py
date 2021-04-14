@@ -62,6 +62,7 @@ class Experiment:
                                   "Tissue,"
                                   "Time,"
                                   "Date,"
+                                  "Genotype,"
                                   "Condition,"
                                   "Collector,"
                                   "Location,"
@@ -80,6 +81,7 @@ class Experiment:
                                                    "Tissue": getattr(row, "Tissue"),
                                                    "Time": getattr(row, "Time"),
                                                    "Date": getattr(row, "Date"),
+                                                   "Genotype": getattr(row, "Genotype"),
                                                    "Condition": getattr(row, "Condition"),
                                                    "Collector": getattr(row, "Collector"),
                                                    "Location": getattr(row, "Location"),

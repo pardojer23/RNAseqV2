@@ -77,7 +77,7 @@ class RNAseq_exp():
 
 
 class RNAseq():
-    def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, condition, paired,
+    def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, genotype, condition, paired,
                  ind, fasta, threads, script_dir, output_dir):
         self.sample_dict = {"SampleID": sample_id,
                             "Read1": read1,
@@ -85,8 +85,9 @@ class RNAseq():
                             "DateTime": datetime,
                             "Replicate": replicate,
                             "Tissue": tissue,
+                            "Genotype": genotype,
                             "Condition": condition,
-                            "Paired": paired }
+                            "Paired": paired}
         self.exp_params = {"Index": ind,
                            "Threads": threads,
                            "Fasta": fasta,
@@ -96,7 +97,7 @@ class RNAseq():
 
 
 class RNAseqSE(RNAseq):
-    def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, condition, paired,
+    def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, genotype, condition, paired,
                  ind, fasta, threads, script_dir, output_dir, quant_seq):
         super(RNAseqSE, self).__init__(sample_id,
                                        read1,
@@ -104,6 +105,7 @@ class RNAseqSE(RNAseq):
                                        datetime,
                                        replicate,
                                        tissue,
+                                       genotype,
                                        condition,
                                        paired,
                                        ind,
@@ -144,7 +146,7 @@ class RNAseqSE(RNAseq):
 
 
 class RNAseqPE(RNAseq):
-    def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, condition, paired,
+    def __init__(self, sample_id, read1, read2, datetime, replicate, tissue, genotype, condition, paired,
                  ind, fasta, threads, script_dir, output_dir):
         super(RNAseqPE, self).__init__(sample_id,
                                        read1,
@@ -152,6 +154,7 @@ class RNAseqPE(RNAseq):
                                        datetime,
                                        replicate,
                                        tissue,
+                                       genotype,
                                        condition,
                                        paired,
                                        ind,

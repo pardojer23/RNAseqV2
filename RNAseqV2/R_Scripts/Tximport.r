@@ -24,6 +24,7 @@ sampleTable$DateID = stringr::str_replace_all(sampleTable$DateID,"TNA","")
 # add Exp column summarizing experimental conditions
 sampleTable$Exp = stringr::str_c(sampleTable$Condition,
     sampleTable$Tissue,
+    sampleTable$Genotype,
     sampleTable$Location,
     sampleTable$DateID,sep="_")
 sampleTable$Exp = stringr::str_replace_all(sampleTable$Exp,"___","_")
