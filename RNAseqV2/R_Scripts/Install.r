@@ -4,7 +4,7 @@
 # Created on: 2019-10-25
 if (!requireNamespace("BiocManager", quietly = TRUE))
 install.packages("BiocManager", repos='http://cran.us.r-project.org')
-BiocManager::install(version = "3.12")
+BiocManager::install(version = "3.13")
 if (!require("tximport", character.only=TRUE))
 BiocManager::install("tximport")
 if (!require("DESeq2", character.only=TRUE))

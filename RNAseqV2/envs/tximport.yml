@@ -10,7 +10,7 @@ dependencies:
   - python>=3.6
   - pandas
   - dateparser
-  - r-base>=4.0.0
+  - r-base=4.1.0
   - bioconductor-deseq2
 
 
