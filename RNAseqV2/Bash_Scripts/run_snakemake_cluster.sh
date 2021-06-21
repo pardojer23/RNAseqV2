@@ -10,7 +10,6 @@ CONDA_SHELL="$(grep -o -m 1 "${HOME}/.*/etc/profile.d/conda.sh" ${HOME}/.bashrc)
   fi
 conda activate RNAseqV2
 snakemake -s ${SCRIPT_DIR}/RNAseq.smk -j 500 \
---unlock \
 --cluster-config ${SCRIPT_DIR}/cluster.json \
 --latency-wait 30 \
 --cluster 'sbatch --mem={cluster.mem} -t {cluster.time} -c {cluster.n}'
