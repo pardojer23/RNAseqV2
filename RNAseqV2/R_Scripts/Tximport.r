@@ -2,9 +2,9 @@
 # Objective : Map transcript level expression to gene level and calculate TPM
 # Created by: Jeremy
 # Created on: 2019-09-19
-args = commandArgs(TRUE)
-quantSeq = unlist(strsplit(args[1],","))
-print(quantSeq)
+#args = commandArgs(TRUE)
+#quantSeq = unlist(strsplit(args[1],","))
+#print(quantSeq)
 # load required packages
 library(readr)
 library(dplyr)
