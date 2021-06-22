@@ -66,8 +66,7 @@ class RNAseq_exp():
 
     def run_tximport(self):
         subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/run_tximport.sh",
-                        self.exp_params["Script_dir"]+"/R_Scripts/Tximport.r",
-                        self.exp_params["Quant_Seq"]])
+                        self.exp_params["Script_dir"]+"/R_Scripts/Tximport.r"])
 
     def run_deseq2(self):
         subprocess.run(["bash", "-i", self.exp_params["Script_dir"]+"/Bash_Scripts/run_deseq2.sh",
